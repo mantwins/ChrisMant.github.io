@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="el">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Χρήστος Μαντέλος - Portfolio</title>
+    <title>Christos Mantelos - Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
@@ -60,34 +60,42 @@
         .container {
             max-width: 1100px;
             margin: 0 auto;
-            padding: 60px 24px;
+            padding: 40px 24px 60px 24px;
             position: relative;
             z-index: 1;
         }
 
-        /* Header */
-        header {
-            text-align: center;
+        /* Navigation Bar (With CM Logo) */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
             margin-bottom: 50px;
+            border-bottom: 1px solid var(--border-color);
             animation: slideInDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
         }
 
-        header h1 {
+        .logo {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 4rem;
+            font-size: 1.3rem;
             font-weight: 700;
-            margin-bottom: 15px;
-            background: linear-gradient(135deg, #fff 20%, var(--text-secondary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: -1px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #fff;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            letter-spacing: -0.5px;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
         }
 
-        header p {
-            font-size: 1.2rem;
+        .nav-subtitle {
+            font-size: 0.9rem;
             color: var(--accent);
-            font-weight: 500;
+            font-weight: 600;
             letter-spacing: 2px;
             text-transform: uppercase;
         }
@@ -135,9 +143,6 @@
             font-size: 1.75rem;
             margin-bottom: 18px;
             color: #fff;
-            display: flex;
-            align-items: center;
-            gap: 10px;
         }
 
         .about-card p {
@@ -161,11 +166,16 @@
             padding: 16px;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 16px;
         }
 
-        .highlight-item span {
-            font-size: 1.5rem;
+        /* Clean indicator instead of emojis */
+        .dot-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
         }
 
         .highlight-text h4 {
@@ -207,7 +217,6 @@
             animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
         }
 
-        /* Hover card styling */
         .certification-card:hover {
             background: var(--card-hover-bg);
             border-color: rgba(99, 102, 241, 0.35);
@@ -216,7 +225,6 @@
                         0 0 30px rgba(99, 102, 241, 0.15);
         }
 
-        /* Floating view tag on hover */
         .view-badge {
             position: absolute;
             top: 20px;
@@ -231,9 +239,6 @@
             opacity: 0;
             transform: translateX(10px);
             transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 4px;
         }
 
         .certification-card:hover .view-badge {
@@ -249,7 +254,6 @@
             padding-right: 85px;
         }
 
-        /* Custom Icon Styling */
         .card-icon {
             width: 48px;
             height: 48px;
@@ -296,7 +300,6 @@
             margin-bottom: 14px;
             display: flex;
             align-items: center;
-            gap: 6px;
             opacity: 0.8;
         }
 
@@ -393,7 +396,6 @@
             box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4);
         }
 
-        /* Form Inputs Styling */
         .contact-form {
             display: flex;
             flex-direction: column;
@@ -488,9 +490,13 @@
         }
 
         @media (max-width: 768px) {
-            header h1 { font-size: 2.8rem; }
+            .navbar {
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
+            }
             .certifications-grid { grid-template-columns: 1fr; }
-            .container { padding: 40px 16px; }
+            .container { padding: 30px 16px; }
             .about-card, .contact-section { padding: 24px; }
         }
     </style>
@@ -498,51 +504,51 @@
 <body>
     <div class="container">
         
-        <header>
-            <h1>Χρήστος Μαντέλος</h1>
-            <p>AI Engineer & Software Developer</p>
-        </header>
+        <nav class="navbar">
+            <div class="logo">CM</div>
+            <div class="nav-subtitle">AI Engineer & Software Developer</div>
+        </nav>
 
         <div class="about-card">
-            <h2>👋 Σχετικά με εμένα</h2>
+            <h2>About Me</h2>
             <p>
-                Είμαι σπουδαστής στη <strong>ΣΑΕΚ Θέρμης</strong> (πρώην ΙΕΚ) με κατεύθυνση την Πληροφορική και τις νέες τεχνολογίες. 
-                Το πάθος μου επικεντρώνεται στην ανάπτυξη εφαρμογών (Software Development), το Machine Learning και την Τεχνητή Νοημοσύνη (AI). 
-                Μέσω της συνεχούς εκπαίδευσης και της απόκτησης εξειδικευμένων πιστοποιήσεων από κορυφαίους παγκόσμιους οργανισμούς, 
-                αναπτύσσω πρακτικές δεξιότητες για τη δημιουργία έξυπνων, αποδοτικών και σύγχρονων ψηφιακών λύσεων.
+                I am a student at <strong>SAEK Thermis</strong> (formerly IEK) specializing in Computer Science and New Technologies. 
+                My passion lies in Software Development, Machine Learning, and Artificial Intelligence (AI). 
+                Through continuous learning and earning specialized certifications from leading global organizations, 
+                I develop practical skills to build smart, efficient, and modern digital solutions.
             </p>
             <div class="about-highlights">
                 <div class="highlight-item">
-                    <span>🏢</span>
+                    <span class="dot-indicator" style="background: var(--primary);"></span>
                     <div class="highlight-text">
-                        <h4>Σπουδές</h4>
-                        <p>ΣΑΕΚ Θέρμης</p>
+                        <h4>Education</h4>
+                        <p>SAEK Thermis</p>
                     </div>
                 </div>
                 <div class="highlight-item">
-                    <span>💻</span>
+                    <span class="dot-indicator" style="background: var(--secondary);"></span>
                     <div class="highlight-text">
                         <h4>Specialties</h4>
                         <p>AI, Web & Mobile Apps</p>
                     </div>
                 </div>
                 <div class="highlight-item">
-                    <span>🚀</span>
+                    <span class="dot-indicator" style="background: var(--accent);"></span>
                     <div class="highlight-text">
-                        <h4>Στόχος</h4>
-                        <p>Έξυπνο & Καθαρό Code</p>
+                        <h4>Goal</h4>
+                        <p>Smart & Clean Code</p>
                     </div>
                 </div>
             </div>
         </div>
 
         <div>
-            <h2 class="section-title">🎓 Certifications</h2>
+            <h2 class="section-title">Certifications</h2>
             
             <div class="certifications-grid">
                 
                 <a href="https://verify.skilljar.com/c/iti3y3dsu2ns" target="_blank" class="certification-card">
-                    <span class="view-badge">View Certificate ↗</span>
+                    <span class="view-badge">View Certificate &rarr;</span>
                     <div class="card-header">
                         <div class="card-icon">
                             <img src="./image_95a72c.png" alt="Anthropic Logo">
@@ -552,7 +558,7 @@
                             <div class="organization">Anthropic</div>
                         </div>
                     </div>
-                    <div class="date">📅 July 2026</div>
+                    <div class="date">July 2026</div>
                     <div class="credential-id">ID: iti3y3dsu2ns</div>
                     <div class="skills">
                         <span class="skill-badge">AI</span>
@@ -562,7 +568,7 @@
                 </a>
 
                 <a href="https://certificates.mooc.fi/validate/w9aam5uag8" target="_blank" class="certification-card">
-                    <span class="view-badge">View Certificate ↗</span>
+                    <span class="view-badge">View Certificate &rarr;</span>
                     <div class="card-header">
                         <div class="card-icon">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/University_of_Helsinki_logo.svg/120px-University_of_Helsinki_logo.svg.png" alt="University of Helsinki Logo">
@@ -572,7 +578,7 @@
                             <div class="organization">University of Helsinki</div>
                         </div>
                     </div>
-                    <div class="date">📅 May 2026</div>
+                    <div class="date">May 2026</div>
                     <div class="skills">
                         <span class="skill-badge">AI Fundamentals</span>
                         <span class="skill-badge">Machine Learning</span>
@@ -580,7 +586,7 @@
                 </a>
 
                 <a href="https://www.credly.com/badges/514fb70c-1f70-45cd-94f0-a6cee2045f86/linked_in_profile" target="_blank" class="certification-card">
-                    <span class="view-badge">View Certificate ↗</span>
+                    <span class="view-badge">View Certificate &rarr;</span>
                     <div class="card-header">
                         <div class="card-icon">
                             <img src="https://cdn.simpleicons.org/amazonwebservices/FF9900" onerror="this.src='https://www.vectorlogo.zone/logos/amazon_aws/amazon_aws-icon.svg'" alt="AWS Logo">
@@ -590,7 +596,7 @@
                             <div class="organization">Amazon Web Services</div>
                         </div>
                     </div>
-                    <div class="date">📅 May 2026</div>
+                    <div class="date">May 2026</div>
                     <div class="skills">
                         <span class="skill-badge">AWS</span>
                         <span class="skill-badge">Generative AI</span>
@@ -599,7 +605,7 @@
                 </a>
 
                 <a href="https://www.kaggle.com/learn/certification/chrismantelos/pandas" target="_blank" class="certification-card">
-                    <span class="view-badge">View Certificate ↗</span>
+                    <span class="view-badge">View Certificate &rarr;</span>
                     <div class="card-header">
                         <div class="card-icon">
                             <img src="https://cdn.simpleicons.org/kaggle/20BEFF" onerror="this.src='https://www.vectorlogo.zone/logos/kaggle/kaggle-icon.svg'" alt="Kaggle Logo">
@@ -609,7 +615,7 @@
                             <div class="organization">Kaggle</div>
                         </div>
                     </div>
-                    <div class="date">📅 May 2026</div>
+                    <div class="date">May 2026</div>
                     <div class="skills">
                         <span class="skill-badge">Pandas</span>
                         <span class="skill-badge">Data Cleaning</span>
@@ -618,7 +624,7 @@
                 </a>
 
                 <a href="https://www.kaggle.com/learn/certification/chrismantelos/python" target="_blank" class="certification-card">
-                    <span class="view-badge">View Certificate ↗</span>
+                    <span class="view-badge">View Certificate &rarr;</span>
                     <div class="card-header">
                         <div class="card-icon">
                             <img src="https://cdn.simpleicons.org/kaggle/20BEFF" onerror="this.src='https://www.vectorlogo.zone/logos/kaggle/kaggle-icon.svg'" alt="Kaggle Logo">
@@ -628,7 +634,7 @@
                             <div class="organization">Kaggle</div>
                         </div>
                     </div>
-                    <div class="date">📅 May 2026</div>
+                    <div class="date">May 2026</div>
                     <div class="skills">
                         <span class="skill-badge">Python</span>
                         <span class="skill-badge">Data Structures</span>
@@ -637,7 +643,7 @@
                 </a>
 
                 <a href="https://me.developers.google.com/u/105513592764299577416" target="_blank" class="certification-card">
-                    <span class="view-badge">View Certificate ↗</span>
+                    <span class="view-badge">View Certificate &rarr;</span>
                     <div class="card-header">
                         <div class="card-icon">
                             <img src="https://cdn.simpleicons.org/flutter/02569B" onerror="this.src='https://www.vectorlogo.zone/logos/flutterio/flutterio-icon.svg'" alt="Flutter Logo">
@@ -647,7 +653,7 @@
                             <div class="organization">Google</div>
                         </div>
                     </div>
-                    <div class="date">📅 May 2026</div>
+                    <div class="date">May 2026</div>
                     <div class="skills">
                         <span class="skill-badge">Flutter</span>
                         <span class="skill-badge">Dart</span>
@@ -657,7 +663,7 @@
                 </a>
 
                 <a href="https://www.linkedin.com/learning/certificates/79f1323ccc56830fc4182fe687d33766e3441df49ee20c4da7ef64bca03645bf" target="_blank" class="certification-card">
-                    <span class="view-badge">View Certificate ↗</span>
+                    <span class="view-badge">View Certificate &rarr;</span>
                     <div class="card-header">
                         <div class="card-icon">
                             <img src="https://cdn.simpleicons.org/microsoft/00A4EF" onerror="this.src='https://www.vectorlogo.zone/logos/microsoft/microsoft-icon.svg'" alt="Microsoft Logo">
@@ -667,7 +673,7 @@
                             <div class="organization">Microsoft & LinkedIn</div>
                         </div>
                     </div>
-                    <div class="date">📅 April 2026</div>
+                    <div class="date">April 2026</div>
                     <div class="skills">
                         <span class="skill-badge">AI for Business</span>
                         <span class="skill-badge">Microsoft Copilot</span>
@@ -677,7 +683,7 @@
                 </a>
 
                 <a href="https://www.credly.com/badges/1677b59d-d436-482c-8bd6-e71d116e79b1/linked_in_profile" target="_blank" class="certification-card">
-                    <span class="view-badge">View Certificate ↗</span>
+                    <span class="view-badge">View Certificate &rarr;</span>
                     <div class="card-header">
                         <div class="card-icon">
                             <img src="https://cdn.simpleicons.org/googlecloud/4285F4" onerror="this.src='https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg'" alt="Google Cloud Logo">
@@ -687,7 +693,7 @@
                             <div class="organization">Google</div>
                         </div>
                     </div>
-                    <div class="date">📅 April 2026</div>
+                    <div class="date">April 2026</div>
                     <div class="skills">
                         <span class="skill-badge">Generative AI</span>
                         <span class="skill-badge">Prompt Engineering</span>
@@ -697,7 +703,7 @@
                 </a>
 
                 <a href="https://www.skills.google/public_profiles/6448f04e-9e98-406b-9d25-b0f5e48e45b7/badges/23834360?utm_medium=social&utm_source=linkedin&utm_campaign=ql-social-share" target="_blank" class="certification-card">
-                    <span class="view-badge">View Certificate ↗</span>
+                    <span class="view-badge">View Certificate &rarr;</span>
                     <div class="card-header">
                         <div class="card-icon">
                             <img src="https://cdn.simpleicons.org/googlecloud/4285F4" onerror="this.src='https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg'" alt="Google Cloud Logo">
@@ -707,7 +713,7 @@
                             <div class="organization">Google Cloud</div>
                         </div>
                     </div>
-                    <div class="date">📅 April 2026</div>
+                    <div class="date">April 2026</div>
                     <div class="credential-id">ID: 23834360</div>
                     <div class="skills">
                         <span class="skill-badge">Responsible AI</span>
@@ -717,7 +723,7 @@
                 </a>
 
                 <a href="https://cognitiveclass.ai/certificates/4f605ca5-75b6-45bf-a5f0-3c3331dbf964" target="_blank" class="certification-card">
-                    <span class="view-badge">View Certificate ↗</span>
+                    <span class="view-badge">View Certificate &rarr;</span>
                     <div class="card-header">
                         <div class="card-icon">
                             <img src="https://cdn.simpleicons.org/ibm/052FAD" onerror="this.src='https://www.vectorlogo.zone/logos/ibm/ibm-icon.svg'" alt="IBM Logo">
@@ -727,7 +733,7 @@
                             <div class="organization">IBM</div>
                         </div>
                     </div>
-                    <div class="date">📅 April 2026</div>
+                    <div class="date">April 2026</div>
                     <div class="skills">
                         <span class="skill-badge">AI</span>
                         <span class="skill-badge">Machine Learning</span>
@@ -736,7 +742,7 @@
                 </a>
 
                 <a href="https://www.freecodecamp.org/certification/chrismantelos/python-v9" target="_blank" class="certification-card">
-                    <span class="view-badge">View Certificate ↗</span>
+                    <span class="view-badge">View Certificate &rarr;</span>
                     <div class="card-header">
                         <div class="card-icon">
                             <img src="./image_95a78a.png" alt="freeCodeCamp Logo">
@@ -746,7 +752,7 @@
                             <div class="organization">freeCodeCamp</div>
                         </div>
                     </div>
-                    <div class="date">📅 April 2026</div>
+                    <div class="date">April 2026</div>
                     <div class="skills">
                         <span class="skill-badge">Python</span>
                         <span class="skill-badge">Algorithms</span>
@@ -760,14 +766,14 @@
         <div class="contact-section">
             <div class="contact-layout">
                 <div class="contact-info">
-                    <h2>📬 Get In Touch</h2>
+                    <h2>Get In Touch</h2>
                     <p>
-                        Έχετε κάποια πρόταση συνεργασίας, ερώτηση ή απλά θέλετε να πείτε ένα γεια; 
-                        Συμπληρώστε τη φόρμα και θα επικοινωνήσω μαζί σας το συντομότερο δυνατόν!
+                        Do you have a collaboration proposal, a question, or just want to say hello? 
+                        Fill out the form and I will get back to you as soon as possible!
                     </p>
                     <a href="https://github.com/mantwins" target="_blank" class="social-link-btn">
                         <img src="https://cdn.simpleicons.org/github/ffffff" width="18" height="18" alt="GitHub Logo"> 
-                        Δείτε το GitHub μου
+                        View my GitHub
                     </a>
                 </div>
 
@@ -776,26 +782,26 @@
                     <input type="hidden" name="_template" value="table">
                     
                     <div class="form-group">
-                        <label for="name">Ονοματεπώνυμο</label>
-                        <input type="text" id="name" name="name" placeholder="Το όνομά σας" required>
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your name" required>
                     </div>
                     <div class="form-group">
-                        <label for="email">Email Επικοινωνίας</label>
-                        <input type="email" id="email" name="email" placeholder="π.χ. example@mail.com" required>
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="e.g. example@mail.com" required>
                     </div>
                     <div class="form-group">
-                        <label for="message">Μήνυμα</label>
-                        <textarea id="message" name="message" rows="5" placeholder="Πώς μπορώ να σας βοηθήσω;" required></textarea>
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" placeholder="How can I help you?" required></textarea>
                     </div>
                     <button type="submit" class="submit-btn">
-                        <span>Αποστολή Μηνύματος</span> 🚀
+                        <span>Send Message</span>
                     </button>
                 </form>
             </div>
         </div>
 
         <footer>
-            <p>&copy; 2026 Χρήστος Μαντέλος. All rights reserved.</p>
+            <p>&copy; 2026 Christos Mantelos. All rights reserved.</p>
         </footer>
     </div>
 </body>
