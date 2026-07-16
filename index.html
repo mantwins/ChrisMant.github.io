@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="el">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,7 +20,7 @@
             --secondary: #ec4899;
             --accent: #06b6d4;
             --dark-bg: #0f172a;
-            --card-bg: rgba(30, 41, 59, 0.4);
+            --card-bg: rgba(30, 41, 59, 0.45);
             --card-hover-bg: rgba(99, 102, 241, 0.12);
             --glass-light: rgba(255, 255, 255, 0.03);
             --border-color: rgba(255, 255, 255, 0.08);
@@ -41,7 +41,7 @@
             overflow-x: hidden;
         }
 
-        /* Animated background */
+        /* Background grid effect */
         body::before {
             content: '';
             position: fixed;
@@ -58,7 +58,7 @@
         }
 
         .container {
-            max-width: 1300px;
+            max-width: 1100px;
             margin: 0 auto;
             padding: 60px 24px;
             position: relative;
@@ -68,13 +68,13 @@
         /* Header */
         header {
             text-align: center;
-            margin-bottom: 80px;
+            margin-bottom: 50px;
             animation: slideInDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
         }
 
         header h1 {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 4.5rem;
+            font-size: 4rem;
             font-weight: 700;
             margin-bottom: 15px;
             background: linear-gradient(135deg, #fff 20%, var(--text-secondary) 100%);
@@ -85,7 +85,7 @@
         }
 
         header p {
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             color: var(--accent);
             font-weight: 500;
             letter-spacing: 2px;
@@ -97,7 +97,7 @@
             font-family: 'Space Grotesk', sans-serif;
             font-size: 2rem;
             font-weight: 700;
-            margin-bottom: 50px;
+            margin: 60px 0 35px 0;
             text-align: center;
             position: relative;
             display: inline-block;
@@ -108,30 +108,95 @@
         .section-title::after {
             content: '';
             position: absolute;
-            bottom: -15px;
+            bottom: -12px;
             left: 50%;
             transform: translateX(-50%);
-            width: 60px;
+            width: 50px;
             height: 3px;
             background: linear-gradient(90deg, var(--primary), var(--secondary));
             border-radius: 2px;
         }
 
+        /* About Me Section */
+        .about-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 60px;
+            animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .about-card h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.75rem;
+            margin-bottom: 18px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .about-card p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .about-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin-top: 25px;
+        }
+
+        .highlight-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 14px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .highlight-item span {
+            font-size: 1.5rem;
+        }
+
+        .highlight-text h4 {
+            font-size: 0.95rem;
+            color: #fff;
+            margin-bottom: 2px;
+        }
+
+        .highlight-text p {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
         /* Certifications Grid */
         .certifications-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 24px;
-            margin-top: 50px;
-            animation: fadeIn 1s ease-out 0.3s both;
-            position: relative;
-            z-index: 5;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
         }
 
         /* Certification Card */
         .certification-card {
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
             position: relative;
-            padding: 28px;
+            z-index: 10;
+            cursor: pointer;
+            padding: 24px;
             border-radius: 20px;
             background: var(--card-bg);
             backdrop-filter: blur(12px);
@@ -142,87 +207,62 @@
             animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
         }
 
-        /* Αόρατο Overlay Link που καλύπτει 100% την κάρτα */
-        .card-link {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 20;
-            cursor: pointer;
-        }
-
-        /* Animation delays for items */
-        .certification-card:nth-child(1) { animation-delay: 0.05s; }
-        .certification-card:nth-child(2) { animation-delay: 0.1s; }
-        .certification-card:nth-child(3) { animation-delay: 0.15s; }
-        .certification-card:nth-child(4) { animation-delay: 0.2s; }
-        .certification-card:nth-child(5) { animation-delay: 0.25s; }
-        .certification-card:nth-child(6) { animation-delay: 0.3s; }
-        .certification-card:nth-child(7) { animation-delay: 0.35s; }
-        .certification-card:nth-child(8) { animation-delay: 0.4s; }
-        .certification-card:nth-child(9) { animation-delay: 0.45s; }
-        .certification-card:nth-child(10) { animation-delay: 0.5s; }
-        .certification-card:nth-child(11) { animation-delay: 0.55s; }
-
-        /* Card Hover Effects */
+        /* Hover card styling */
         .certification-card:hover {
             background: var(--card-hover-bg);
-            border-color: rgba(99, 102, 241, 0.3);
-            transform: translateY(-6px) scale(1.01);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 
-                        0 0 40px rgba(99, 102, 241, 0.1);
+            border-color: rgba(99, 102, 241, 0.35);
+            transform: translateY(-6px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 
+                        0 0 30px rgba(99, 102, 241, 0.15);
         }
 
-        /* Link External Indicator */
-        .link-indicator {
+        /* Floating view tag on hover */
+        .view-badge {
             position: absolute;
-            top: 24px;
-            right: 24px;
-            font-size: 0.75rem;
+            top: 20px;
+            right: 20px;
+            background: rgba(99, 102, 241, 0.15);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            color: #a5b4fc;
+            padding: 5px 10px;
+            border-radius: 30px;
+            font-size: 0.72rem;
             font-weight: 600;
-            color: var(--text-secondary);
-            opacity: 0.4;
+            opacity: 0;
+            transform: translateX(10px);
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
             gap: 4px;
-            background: rgba(255, 255, 255, 0.03);
-            padding: 4px 8px;
-            border-radius: 6px;
-            border: 1px solid var(--border-color);
         }
 
-        .certification-card:hover .link-indicator {
+        .certification-card:hover .view-badge {
             opacity: 1;
-            color: var(--accent);
-            border-color: rgba(6, 182, 212, 0.3);
-            background: rgba(6, 182, 212, 0.08);
+            transform: translateX(0);
         }
 
         .card-header {
             display: flex;
             align-items: center;
-            margin-bottom: 20px;
-            gap: 16px;
-            padding-right: 80px; /* Space for the "View Certificate" tag */
+            margin-bottom: 16px;
+            gap: 14px;
+            padding-right: 85px;
         }
 
-        /* Logo Containers */
+        /* Custom Icon Styling */
         .card-icon {
             width: 48px;
             height: 48px;
             border-radius: 12px;
-            background: rgba(255, 255, 255, 0.04);
+            background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.08);
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            transition: all 0.3s ease;
             overflow: hidden;
-            padding: 8px;
+            padding: 6px;
+            transition: all 0.3s ease;
         }
 
         .card-icon img {
@@ -231,17 +271,11 @@
             object-fit: contain;
         }
 
-        .certification-card:hover .card-icon {
-            background: rgba(255, 255, 255, 0.09);
-            border-color: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
-        }
-
         .certification-card h3 {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 600;
-            margin-bottom: 4px;
+            margin-bottom: 2px;
             color: var(--text-primary);
             line-height: 1.3;
         }
@@ -249,7 +283,7 @@
         .organization {
             color: var(--text-secondary);
             font-weight: 500;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
         }
 
         .certification-card:hover .organization {
@@ -258,8 +292,8 @@
 
         .date {
             color: var(--text-secondary);
-            font-size: 0.85rem;
-            margin-bottom: 16px;
+            font-size: 0.8rem;
+            margin-bottom: 14px;
             display: flex;
             align-items: center;
             gap: 6px;
@@ -268,15 +302,14 @@
 
         .credential-id {
             background: rgba(255, 255, 255, 0.02);
-            padding: 8px 12px;
-            border-radius: 8px;
-            font-size: 0.8rem;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
             color: var(--text-secondary);
-            margin-bottom: 16px;
+            margin-bottom: 14px;
             font-family: 'Courier New', monospace;
             word-break: break-all;
             border-left: 2px solid var(--border-color);
-            transition: all 0.3s ease;
         }
 
         .certification-card:hover .credential-id {
@@ -295,12 +328,11 @@
         .skill-badge {
             background: rgba(255, 255, 255, 0.04);
             color: var(--text-secondary);
-            padding: 4px 10px;
+            padding: 3px 8px;
             border-radius: 100px;
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             font-weight: 500;
             border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
         }
 
         .certification-card:hover .skill-badge {
@@ -309,50 +341,131 @@
             border-color: rgba(6, 182, 212, 0.2);
         }
 
+        /* Contact Section */
+        .contact-section {
+            margin-top: 80px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 40px;
+        }
+
+        .contact-info h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        .contact-info p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .social-link-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .social-link-btn:hover {
+            background: var(--primary);
+            border-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4);
+        }
+
+        /* Form Inputs Styling */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-group label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .contact-form input, 
+        .contact-form textarea {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 14px;
+            color: #fff;
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-form input:focus, 
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 10px rgba(99, 102, 241, 0.2);
+            background: rgba(15, 23, 42, 0.8);
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            padding: 15px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
+            filter: brightness(1.1);
+        }
+
         /* Footer */
         footer {
             text-align: center;
-            margin-top: 120px;
+            margin-top: 80px;
             padding: 40px 20px;
             border-top: 1px solid var(--border-color);
-            animation: fadeIn 1s ease-out 1.2s both;
-            position: relative;
-            z-index: 10;
         }
 
         footer p {
             color: var(--text-secondary);
-            margin-bottom: 12px;
-            font-weight: 400;
-            font-size: 0.95rem;
-        }
-
-        footer a {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            position: relative;
-            z-index: 30;
-        }
-
-        footer a::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            transition: width 0.3s ease;
-        }
-
-        footer a:hover::after {
-            width: 100%;
-        }
-
-        footer a:hover {
-            color: var(--secondary);
+            font-size: 0.9rem;
         }
 
         /* Animations */
@@ -366,43 +479,73 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        /* Responsive design updates */
-        @media (max-width: 1024px) {
-            header h1 { font-size: 3.5rem; }
-            .certifications-grid { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+        /* Responsive Layouts */
+        @media (max-width: 850px) {
+            .contact-layout {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
         }
 
         @media (max-width: 768px) {
             header h1 { font-size: 2.8rem; }
-            header p { font-size: 1.1rem; }
             .certifications-grid { grid-template-columns: 1fr; }
             .container { padding: 40px 16px; }
+            .about-card, .contact-section { padding: 24px; }
         }
     </style>
 </head>
 <body>
     <div class="container">
+        
         <header>
             <h1>Χρήστος Μαντέλος</h1>
             <p>AI Engineer & Software Developer</p>
         </header>
+
+        <div class="about-card">
+            <h2>👋 Σχετικά με εμένα</h2>
+            <p>
+                Είμαι σπουδαστής στη <strong>ΣΑΕΚ Θέρμης</strong> (πρώην ΙΕΚ) με κατεύθυνση την Πληροφορική και τις νέες τεχνολογίες. 
+                Το πάθος μου επικεντρώνεται στην ανάπτυξη εφαρμογών (Software Development), το Machine Learning και την Τεχνητή Νοημοσύνη (AI). 
+                Μέσω της συνεχούς εκπαίδευσης και της απόκτησης εξειδικευμένων πιστοποιήσεων από κορυφαίους παγκόσμιους οργανισμούς, 
+                αναπτύσσω πρακτικές δεξιότητες για τη δημιουργία έξυπνων, αποδοτικών και σύγχρονων ψηφιακών λύσεων.
+            </p>
+            <div class="about-highlights">
+                <div class="highlight-item">
+                    <span>🏢</span>
+                    <div class="highlight-text">
+                        <h4>Σπουδές</h4>
+                        <p>ΣΑΕΚ Θέρμης</p>
+                    </div>
+                </div>
+                <div class="highlight-item">
+                    <span>💻</span>
+                    <div class="highlight-text">
+                        <h4>Specialties</h4>
+                        <p>AI, Web & Mobile Apps</p>
+                    </div>
+                </div>
+                <div class="highlight-item">
+                    <span>🚀</span>
+                    <div class="highlight-text">
+                        <h4>Στόχος</h4>
+                        <p>Έξυπνο & Καθαρό Code</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div>
             <h2 class="section-title">🎓 Certifications</h2>
             
             <div class="certifications-grid">
                 
-                <div class="certification-card">
-                    <a href="https://verify.skilljar.com/c/iti3y3dsu2ns" target="_blank" class="card-link" aria-label="View Certificate"></a>
-                    <span class="link-indicator">View ↗</span>
+                <a href="https://verify.skilljar.com/c/iti3y3dsu2ns" target="_blank" class="certification-card">
+                    <span class="view-badge">View Certificate ↗</span>
                     <div class="card-header">
                         <div class="card-icon">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matcha/matcha-original.svg" onerror="this.src='https://www.vectorlogo.zone/logos/anthropic/anthropic-icon.svg'" alt="Anthropic Logo">
+                            <img src="./image_95a72c.png" alt="Anthropic Logo">
                         </div>
                         <div>
                             <h3>Building with the Claude API</h3>
@@ -416,14 +559,13 @@
                         <span class="skill-badge">Prompt Engineering</span>
                         <span class="skill-badge">API Development</span>
                     </div>
-                </div>
+                </a>
 
-                <div class="certification-card">
-                    <a href="https://certificates.mooc.fi/validate/w9aam5uag8" target="_blank" class="card-link" aria-label="View Certificate"></a>
-                    <span class="link-indicator">View ↗</span>
+                <a href="https://certificates.mooc.fi/validate/w9aam5uag8" target="_blank" class="certification-card">
+                    <span class="view-badge">View Certificate ↗</span>
                     <div class="card-header">
                         <div class="card-icon">
-                            <img src="https://www.helsinki.fi/themes/custom/university_of_helsinki/logo.svg" onerror="this.style.display='none'; this.parentNode.innerHTML='🧠'" alt="University of Helsinki Logo">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/University_of_Helsinki_logo.svg/120px-University_of_Helsinki_logo.svg.png" alt="University of Helsinki Logo">
                         </div>
                         <div>
                             <h3>Elements of AI</h3>
@@ -435,14 +577,13 @@
                         <span class="skill-badge">AI Fundamentals</span>
                         <span class="skill-badge">Machine Learning</span>
                     </div>
-                </div>
+                </a>
 
-                <div class="certification-card">
-                    <a href="https://www.credly.com/badges/514fb70c-1f70-45cd-94f0-a6cee2045f86/linked_in_profile" target="_blank" class="card-link" aria-label="View Certificate"></a>
-                    <span class="link-indicator">View ↗</span>
+                <a href="https://www.credly.com/badges/514fb70c-1f70-45cd-94f0-a6cee2045f86/linked_in_profile" target="_blank" class="certification-card">
+                    <span class="view-badge">View Certificate ↗</span>
                     <div class="card-header">
                         <div class="card-icon">
-                            <img src="https://www.vectorlogo.zone/logos/amazon_aws/amazon_aws-icon.svg" alt="AWS Logo">
+                            <img src="https://cdn.simpleicons.org/amazonwebservices/FF9900" onerror="this.src='https://www.vectorlogo.zone/logos/amazon_aws/amazon_aws-icon.svg'" alt="AWS Logo">
                         </div>
                         <div>
                             <h3>AWS Intro to Generative AI</h3>
@@ -455,14 +596,13 @@
                         <span class="skill-badge">Generative AI</span>
                         <span class="skill-badge">Cloud Computing</span>
                     </div>
-                </div>
+                </a>
 
-                <div class="certification-card">
-                    <a href="https://www.kaggle.com/learn/certification/chrismantelos/pandas" target="_blank" class="card-link" aria-label="View Certificate"></a>
-                    <span class="link-indicator">View ↗</span>
+                <a href="https://www.kaggle.com/learn/certification/chrismantelos/pandas" target="_blank" class="certification-card">
+                    <span class="view-badge">View Certificate ↗</span>
                     <div class="card-header">
                         <div class="card-icon">
-                            <img src="https://www.vectorlogo.zone/logos/kaggle/kaggle-icon.svg" alt="Kaggle Logo">
+                            <img src="https://cdn.simpleicons.org/kaggle/20BEFF" onerror="this.src='https://www.vectorlogo.zone/logos/kaggle/kaggle-icon.svg'" alt="Kaggle Logo">
                         </div>
                         <div>
                             <h3>Pandas</h3>
@@ -475,14 +615,13 @@
                         <span class="skill-badge">Data Cleaning</span>
                         <span class="skill-badge">Data Analysis</span>
                     </div>
-                </div>
+                </a>
 
-                <div class="certification-card">
-                    <a href="https://www.kaggle.com/learn/certification/chrismantelos/python" target="_blank" class="card-link" aria-label="View Certificate"></a>
-                    <span class="link-indicator">View ↗</span>
+                <a href="https://www.kaggle.com/learn/certification/chrismantelos/python" target="_blank" class="certification-card">
+                    <span class="view-badge">View Certificate ↗</span>
                     <div class="card-header">
                         <div class="card-icon">
-                            <img src="https://www.vectorlogo.zone/logos/kaggle/kaggle-icon.svg" alt="Kaggle Logo">
+                            <img src="https://cdn.simpleicons.org/kaggle/20BEFF" onerror="this.src='https://www.vectorlogo.zone/logos/kaggle/kaggle-icon.svg'" alt="Kaggle Logo">
                         </div>
                         <div>
                             <h3>Python</h3>
@@ -495,14 +634,13 @@
                         <span class="skill-badge">Data Structures</span>
                         <span class="skill-badge">Programming</span>
                     </div>
-                </div>
+                </a>
 
-                <div class="certification-card">
-                    <a href="https://me.developers.google.com/u/105513592764299577416" target="_blank" class="card-link" aria-label="View Certificate"></a>
-                    <span class="link-indicator">View ↗</span>
+                <a href="https://me.developers.google.com/u/105513592764299577416" target="_blank" class="certification-card">
+                    <span class="view-badge">View Certificate ↗</span>
                     <div class="card-header">
                         <div class="card-icon">
-                            <img src="https://www.vectorlogo.zone/logos/google/google-icon.svg" alt="Google Logo">
+                            <img src="https://cdn.simpleicons.org/flutter/02569B" onerror="this.src='https://www.vectorlogo.zone/logos/flutterio/flutterio-icon.svg'" alt="Flutter Logo">
                         </div>
                         <div>
                             <h3>Build Apps with Flutter</h3>
@@ -516,14 +654,13 @@
                         <span class="skill-badge">Mobile Dev</span>
                         <span class="skill-badge">Cross-platform</span>
                     </div>
-                </div>
+                </a>
 
-                <div class="certification-card">
-                    <a href="https://www.linkedin.com/learning/certificates/79f1323ccc56830fc4182fe687d33766e3441df49ee20c4da7ef64bca03645bf" target="_blank" class="card-link" aria-label="View Certificate"></a>
-                    <span class="link-indicator">View ↗</span>
+                <a href="https://www.linkedin.com/learning/certificates/79f1323ccc56830fc4182fe687d33766e3441df49ee20c4da7ef64bca03645bf" target="_blank" class="certification-card">
+                    <span class="view-badge">View Certificate ↗</span>
                     <div class="card-header">
                         <div class="card-icon">
-                            <img src="https://www.vectorlogo.zone/logos/microsoft/microsoft-icon.svg" alt="Microsoft Logo">
+                            <img src="https://cdn.simpleicons.org/microsoft/00A4EF" onerror="this.src='https://www.vectorlogo.zone/logos/microsoft/microsoft-icon.svg'" alt="Microsoft Logo">
                         </div>
                         <div>
                             <h3>Career Essentials in Generative AI</h3>
@@ -537,14 +674,13 @@
                         <span class="skill-badge">Generative AI</span>
                         <span class="skill-badge">Career Skills</span>
                     </div>
-                </div>
+                </a>
 
-                <div class="certification-card">
-                    <a href="https://www.credly.com/badges/1677b59d-d436-482c-8bd6-e71d116e79b1/linked_in_profile" target="_blank" class="card-link" aria-label="View Certificate"></a>
-                    <span class="link-indicator">View ↗</span>
+                <a href="https://www.credly.com/badges/1677b59d-d436-482c-8bd6-e71d116e79b1/linked_in_profile" target="_blank" class="certification-card">
+                    <span class="view-badge">View Certificate ↗</span>
                     <div class="card-header">
                         <div class="card-icon">
-                            <img src="https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg" alt="Google Cloud Logo">
+                            <img src="https://cdn.simpleicons.org/googlecloud/4285F4" onerror="this.src='https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg'" alt="Google Cloud Logo">
                         </div>
                         <div>
                             <h3>Prompt Design in Vertex AI</h3>
@@ -558,14 +694,13 @@
                         <span class="skill-badge">Vertex AI</span>
                         <span class="skill-badge">Google Cloud</span>
                     </div>
-                </div>
+                </a>
 
-                <div class="certification-card">
-                    <a href="https://www.skills.google/public_profiles/6448f04e-9e98-406b-9d25-b0f5e48e45b7/badges/23834360?utm_medium=social&utm_source=linkedin&utm_campaign=ql-social-share" target="_blank" class="card-link" aria-label="View Certificate"></a>
-                    <span class="link-indicator">View ↗</span>
+                <a href="https://www.skills.google/public_profiles/6448f04e-9e98-406b-9d25-b0f5e48e45b7/badges/23834360?utm_medium=social&utm_source=linkedin&utm_campaign=ql-social-share" target="_blank" class="certification-card">
+                    <span class="view-badge">View Certificate ↗</span>
                     <div class="card-header">
                         <div class="card-icon">
-                            <img src="https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg" alt="Google Cloud Logo">
+                            <img src="https://cdn.simpleicons.org/googlecloud/4285F4" onerror="this.src='https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg'" alt="Google Cloud Logo">
                         </div>
                         <div>
                             <h3>Applying AI Principles</h3>
@@ -579,14 +714,13 @@
                         <span class="skill-badge">AI</span>
                         <span class="skill-badge">Cloud Computing</span>
                     </div>
-                </div>
+                </a>
 
-                <div class="certification-card">
-                    <a href="https://cognitiveclass.ai/certificates/4f605ca5-75b6-45bf-a5f0-3c3331dbf964" target="_blank" class="card-link" aria-label="View Certificate"></a>
-                    <span class="link-indicator">View ↗</span>
+                <a href="https://cognitiveclass.ai/certificates/4f605ca5-75b6-45bf-a5f0-3c3331dbf964" target="_blank" class="certification-card">
+                    <span class="view-badge">View Certificate ↗</span>
                     <div class="card-header">
                         <div class="card-icon">
-                            <img src="https://www.vectorlogo.zone/logos/ibm/ibm-icon.svg" alt="IBM Logo">
+                            <img src="https://cdn.simpleicons.org/ibm/052FAD" onerror="this.src='https://www.vectorlogo.zone/logos/ibm/ibm-icon.svg'" alt="IBM Logo">
                         </div>
                         <div>
                             <h3>AI Fundamentals</h3>
@@ -599,14 +733,13 @@
                         <span class="skill-badge">Machine Learning</span>
                         <span class="skill-badge">IBM Watson</span>
                     </div>
-                </div>
+                </a>
 
-                <div class="certification-card">
-                    <a href="https://www.freecodecamp.org/certification/chrismantelos/python-v9" target="_blank" class="card-link" aria-label="View Certificate"></a>
-                    <span class="link-indicator">View ↗</span>
+                <a href="https://www.freecodecamp.org/certification/chrismantelos/python-v9" target="_blank" class="certification-card">
+                    <span class="view-badge">View Certificate ↗</span>
                     <div class="card-header">
                         <div class="card-icon">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/freecodecamp/freecodecamp-original.svg" onerror="this.src='https://www.vectorlogo.zone/logos/freecodecamp/freecodecamp-icon.svg'" alt="freeCodeCamp Logo">
+                            <img src="./image_95a78a.png" alt="freeCodeCamp Logo">
                         </div>
                         <div>
                             <h3>Scientific Computing</h3>
@@ -619,14 +752,50 @@
                         <span class="skill-badge">Algorithms</span>
                         <span class="skill-badge">Scientific Computing</span>
                     </div>
+                </a>
+
+            </div>
+        </div>
+
+        <div class="contact-section">
+            <div class="contact-layout">
+                <div class="contact-info">
+                    <h2>📬 Get In Touch</h2>
+                    <p>
+                        Έχετε κάποια πρόταση συνεργασίας, ερώτηση ή απλά θέλετε να πείτε ένα γεια; 
+                        Συμπληρώστε τη φόρμα και θα επικοινωνήσω μαζί σας το συντομότερο δυνατόν!
+                    </p>
+                    <a href="https://github.com/mantwins" target="_blank" class="social-link-btn">
+                        <img src="https://cdn.simpleicons.org/github/ffffff" width="18" height="18" alt="GitHub Logo"> 
+                        Δείτε το GitHub μου
+                    </a>
                 </div>
 
+                <form class="contact-form" action="https://formsubmit.co/chris.mantelos.07@gmail.com" method="POST">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+                    
+                    <div class="form-group">
+                        <label for="name">Ονοματεπώνυμο</label>
+                        <input type="text" id="name" name="name" placeholder="Το όνομά σας" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Επικοινωνίας</label>
+                        <input type="email" id="email" name="email" placeholder="π.χ. example@mail.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Μήνυμα</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Πώς μπορώ να σας βοηθήσω;" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">
+                        <span>Αποστολή Μηνύματος</span> 🚀
+                    </button>
+                </form>
             </div>
         </div>
 
         <footer>
             <p>&copy; 2026 Χρήστος Μαντέλος. All rights reserved.</p>
-            <p>Connect with me on <a href="https://github.com/mantwins" target="_blank">GitHub</a></p>
         </footer>
     </div>
 </body>
