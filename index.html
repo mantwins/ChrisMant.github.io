@@ -14,18 +14,36 @@
             box-sizing: border-box;
         }
 
+        /* Variables for Light & Dark Themes */
         :root {
             --primary: #6366f1;
             --primary-dark: #4f46e5;
             --secondary: #ec4899;
             --accent: #06b6d4;
-            --dark-bg: #0f172a;
+            
+            /* Dark Theme Colors (Default) */
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #0b0f19 50%, #0f172a 100%);
             --card-bg: rgba(30, 41, 59, 0.45);
             --card-hover-bg: rgba(99, 102, 241, 0.12);
-            --glass-light: rgba(255, 255, 255, 0.03);
             --border-color: rgba(255, 255, 255, 0.08);
             --text-primary: #f1f5f9;
             --text-secondary: #94a3b8;
+            --glass-menu-bg: rgba(30, 41, 59, 0.75);
+            --nav-btn-color: #f1f5f9;
+            --nav-btn-hover: #a5b4fc;
+        }
+
+        [data-theme="light"] {
+            /* Light Theme Colors */
+            --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%);
+            --card-bg: rgba(255, 255, 255, 0.75);
+            --card-hover-bg: rgba(99, 102, 241, 0.05);
+            --border-color: rgba(15, 23, 42, 0.08);
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --glass-menu-bg: rgba(255, 255, 255, 0.85);
+            --nav-btn-color: #0f172a;
+            --nav-btn-hover: #6366f1;
         }
 
         html {
@@ -34,14 +52,15 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, var(--dark-bg) 0%, #0b0f19 50%, #0f172a 100%);
+            background: var(--bg-gradient);
             color: var(--text-primary);
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
+            transition: background 0.5s ease, color 0.5s ease;
         }
 
-        /* Background grid effect */
+        /* Decorative background glows - visible mostly in dark mode */
         body::before {
             content: '';
             position: fixed;
@@ -50,9 +69,8 @@
             width: 100%;
             height: 100%;
             background: 
-                radial-gradient(circle at 10% 30%, rgba(99, 102, 241, 0.12) 0%, transparent 45%),
-                radial-gradient(circle at 90% 70%, rgba(236, 72, 153, 0.12) 0%, transparent 45%),
-                radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.08) 0%, transparent 50%);
+                radial-gradient(circle at 10% 30%, rgba(99, 102, 241, 0.08) 0%, transparent 45%),
+                radial-gradient(circle at 90% 70%, rgba(236, 72, 153, 0.08) 0%, transparent 45%);
             pointer-events: none;
             z-index: -1;
         }
@@ -65,7 +83,7 @@
             z-index: 1;
         }
 
-        /* Navigation Bar (With CM Logo) */
+        /* Navigation Bar (With CM Logo & Header Buttons) */
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -92,15 +110,149 @@
             box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
         }
 
-        .nav-subtitle {
-            font-size: 0.9rem;
-            color: var(--accent);
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
+        /* Action Buttons Group (Menu & Dark Mode) */
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
-        /* Section Title */
+        .nav-btn {
+            background: none;
+            border: none;
+            color: var(--nav-btn-color);
+            cursor: pointer;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: var(--card-hover-bg);
+            color: var(--nav-btn-hover);
+        }
+
+        .nav-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* Sidebar Overlay Navigation Menu */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -320px;
+            width: 300px;
+            height: 100%;
+            background: var(--glass-menu-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-right: 1px solid var(--border-color);
+            z-index: 1000;
+            padding: 40px 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            transition: left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 10px 0 30px rgba(0, 0, 0, 0.25);
+        }
+
+        .sidebar.active {
+            left: 0;
+        }
+
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+        }
+
+        .sidebar-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            transition: background 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background: var(--border-color);
+        }
+
+        .close-btn svg {
+            width: 22px;
+            height: 22px;
+            stroke: currentColor;
+            stroke-width: 2;
+        }
+
+        .sidebar-links {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .sidebar-link {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 10px 15px;
+            border-radius: 12px;
+        }
+
+        .sidebar-link:hover {
+            color: var(--primary);
+            background: var(--card-hover-bg);
+            padding-left: 20px;
+        }
+
+        /* Backdrop overlay for sidebar closing click */
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(4px);
+            z-index: 999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .sidebar-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Section Titles */
         .section-title {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 2rem;
@@ -111,6 +263,7 @@
             display: inline-block;
             width: 100%;
             letter-spacing: -0.5px;
+            color: var(--text-primary);
         }
 
         .section-title::after {
@@ -135,14 +288,15 @@
             padding: 40px;
             margin-bottom: 60px;
             animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: background 0.5s ease, border-color 0.5s ease;
         }
 
         .about-card h2 {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 1.75rem;
             margin-bottom: 18px;
-            color: #fff;
+            color: var(--text-primary);
         }
 
         .about-card p {
@@ -161,7 +315,7 @@
 
         .highlight-item {
             background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
             border-radius: 14px;
             padding: 16px;
             display: flex;
@@ -169,7 +323,6 @@
             gap: 16px;
         }
 
-        /* Clean indicator instead of emojis */
         .dot-indicator {
             width: 12px;
             height: 12px;
@@ -180,7 +333,7 @@
 
         .highlight-text h4 {
             font-size: 0.95rem;
-            color: #fff;
+            color: var(--text-primary);
             margin-bottom: 2px;
         }
 
@@ -221,8 +374,8 @@
             background: var(--card-hover-bg);
             border-color: rgba(99, 102, 241, 0.35);
             transform: translateY(-6px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 
-                        0 0 30px rgba(99, 102, 241, 0.15);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2), 
+                        0 0 30px rgba(99, 102, 241, 0.1);
         }
 
         .view-badge {
@@ -231,7 +384,7 @@
             right: 20px;
             background: rgba(99, 102, 241, 0.15);
             border: 1px solid rgba(99, 102, 241, 0.3);
-            color: #a5b4fc;
+            color: var(--primary);
             padding: 5px 10px;
             border-radius: 30px;
             font-size: 0.72rem;
@@ -258,8 +411,8 @@
             width: 48px;
             height: 48px;
             border-radius: 12px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -291,7 +444,7 @@
         }
 
         .certification-card:hover .organization {
-            color: var(--accent);
+            color: var(--primary);
         }
 
         .date {
@@ -339,7 +492,7 @@
         }
 
         .certification-card:hover .skill-badge {
-            background: rgba(6, 182, 212, 0.1);
+            background: rgba(6, 182, 212, 0.15);
             color: var(--accent);
             border-color: rgba(6, 182, 212, 0.2);
         }
@@ -353,7 +506,8 @@
             -webkit-backdrop-filter: blur(12px);
             border-radius: 24px;
             padding: 40px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: background 0.5s ease, border-color 0.5s ease;
         }
 
         .contact-layout {
@@ -365,7 +519,7 @@
         .contact-info h2 {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 2rem;
-            color: #fff;
+            color: var(--text-primary);
             margin-bottom: 15px;
         }
 
@@ -381,7 +535,7 @@
             gap: 10px;
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid var(--border-color);
-            color: #fff;
+            color: var(--text-primary);
             padding: 12px 24px;
             border-radius: 14px;
             text-decoration: none;
@@ -392,6 +546,7 @@
         .social-link-btn:hover {
             background: var(--primary);
             border-color: var(--primary-dark);
+            color: #fff;
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4);
         }
@@ -416,14 +571,19 @@
 
         .contact-form input, 
         .contact-form textarea {
-            background: rgba(15, 23, 42, 0.6);
+            background: rgba(15, 23, 42, 0.2);
             border: 1px solid var(--border-color);
             border-radius: 12px;
             padding: 14px;
-            color: #fff;
+            color: var(--text-primary);
             font-family: inherit;
             font-size: 0.95rem;
             transition: all 0.3s ease;
+        }
+
+        [data-theme="light"] .contact-form input,
+        [data-theme="light"] .contact-form textarea {
+            background: rgba(255, 255, 255, 0.8);
         }
 
         .contact-form input:focus, 
@@ -431,7 +591,6 @@
             outline: none;
             border-color: var(--primary);
             box-shadow: 0 0 10px rgba(99, 102, 241, 0.2);
-            background: rgba(15, 23, 42, 0.8);
         }
 
         .submit-btn {
@@ -491,9 +650,7 @@
 
         @media (max-width: 768px) {
             .navbar {
-                flex-direction: column;
-                gap: 12px;
-                text-align: center;
+                padding: 15px 0;
             }
             .certifications-grid { grid-template-columns: 1fr; }
             .container { padding: 30px 16px; }
@@ -502,14 +659,46 @@
     </style>
 </head>
 <body>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <div class="sidebar" id="sidebarMenu">
+        <div class="sidebar-header">
+            <div class="sidebar-title">Menu</div>
+            <button class="close-btn" id="closeMenuBtn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        <div class="sidebar-links">
+            <a href="#about" class="sidebar-link" id="linkAbout">About</a>
+            <a href="#certifications" class="sidebar-link" id="linkCerts">Certifications</a>
+            <a href="#contact" class="sidebar-link" id="linkContact">Contact</a>
+        </div>
+    </div>
+
     <div class="container">
         
         <nav class="navbar">
             <div class="logo">CM</div>
-            <div class="nav-subtitle">AI Engineer & Software Developer</div>
+            <div class="nav-actions">
+                <button class="nav-btn" id="openMenuBtn">
+                    <svg viewBox="0 0 24 24">
+                        <line x1="4" y1="12" x2="20" y2="12"></line>
+                        <line x1="4" y1="6" x2="20" y2="6"></line>
+                        <line x1="4" y1="18" x2="20" y2="18"></line>
+                    </svg>
+                </button>
+                <button class="nav-btn" id="themeToggleBtn">
+                    <svg id="themeIcon" viewBox="0 0 24 24">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+            </div>
         </nav>
 
-        <div class="about-card">
+        <div id="about" class="about-card">
             <h2>About Me</h2>
             <p>
                 I am a student at <strong>SAEK Thermis</strong> (formerly IEK) specializing in Computer Science and New Technologies. 
@@ -542,7 +731,7 @@
             </div>
         </div>
 
-        <div>
+        <div id="certifications">
             <h2 class="section-title">Certifications</h2>
             
             <div class="certifications-grid">
@@ -763,7 +952,7 @@
             </div>
         </div>
 
-        <div class="contact-section">
+        <div id="contact" class="contact-section">
             <div class="contact-layout">
                 <div class="contact-info">
                     <h2>Get In Touch</h2>
@@ -804,5 +993,65 @@
             <p>&copy; 2026 Christos Mantelos. All rights reserved.</p>
         </footer>
     </div>
+
+    <script>
+        const sidebarMenu = document.getElementById('sidebarMenu');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+        const openMenuBtn = document.getElementById('openMenuBtn');
+        const closeMenuBtn = document.getElementById('closeMenuBtn');
+        const themeToggleBtn = document.getElementById('themeToggleBtn');
+        const themeIcon = document.getElementById('themeIcon');
+
+        // Sidebar Navigation Trigger Functions
+        function openSidebar() {
+            sidebarMenu.classList.add('active');
+            sidebarOverlay.classList.add('active');
+        }
+
+        function closeSidebar() {
+            sidebarMenu.classList.remove('active');
+            sidebarOverlay.classList.remove('active');
+        }
+
+        openMenuBtn.addEventListener('click', openSidebar);
+        closeMenuBtn.addEventListener('click', closeSidebar);
+        sidebarOverlay.addEventListener('click', closeSidebar);
+
+        // Close sidebar automatically after clicking any link
+        const navLinks = [
+            document.getElementById('linkAbout'),
+            document.getElementById('linkCerts'),
+            document.getElementById('linkContact')
+        ];
+        navLinks.forEach(link => {
+            link.addEventListener('click', closeSidebar);
+        });
+
+        // Theme Toggle Functionality (Light / Dark Mode)
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            if (currentTheme === 'light') {
+                // Switch to Dark Mode
+                document.documentElement.removeAttribute('data-theme');
+                // Set icon back to Moon SVG
+                themeIcon.innerHTML = `<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>`;
+            } else {
+                // Switch to Light Mode
+                document.documentElement.setAttribute('data-theme', 'light');
+                // Set icon to Sun SVG
+                themeIcon.innerHTML = `
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                `;
+            }
+        });
+    </script>
 </body>
 </html>
