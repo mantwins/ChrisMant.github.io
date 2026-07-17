@@ -28,7 +28,7 @@
             --border-color: rgba(255, 255, 255, 0.08);
             --text-primary: #f1f5f9;
             --text-secondary: #94a3b8;
-            --glass-menu-bg: rgba(15, 23, 42, 0.85);
+            --glass-menu-bg: rgba(30, 41, 59, 0.75);
             --nav-btn-color: #f1f5f9;
             --nav-btn-hover: #a5b4fc;
         }
@@ -41,7 +41,7 @@
             --border-color: rgba(15, 23, 42, 0.08);
             --text-primary: #0f172a;
             --text-secondary: #475569;
-            --glass-menu-bg: rgba(255, 255, 255, 0.9);
+            --glass-menu-bg: rgba(255, 255, 255, 0.85);
             --nav-btn-color: #0f172a;
             --nav-btn-hover: #6366f1;
         }
@@ -60,7 +60,7 @@
             transition: background 0.5s ease, color 0.5s ease;
         }
 
-        /* Decorative background glows */
+        /* Decorative background glows - visible mostly in dark mode */
         body::before {
             content: '';
             position: fixed;
@@ -83,7 +83,7 @@
             z-index: 1;
         }
 
-        /* Navigation Bar */
+        /* Navigation Bar (With CM Logo & Header Buttons) */
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -91,7 +91,6 @@
             padding: 20px 0;
             margin-bottom: 50px;
             border-bottom: 1px solid var(--border-color);
-            position: relative; /* Essential for aligning the dropdown menu card */
             animation: slideInDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
         }
 
@@ -111,16 +110,16 @@
             box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
         }
 
-        /* Action Buttons Group (Box Style) */
+        /* Action Buttons Group (Menu & Dark Mode) */
         .nav-actions {
             display: flex;
             align-items: center;
             gap: 12px;
         }
 
-        .box-btn {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
+        .nav-btn {
+            background: none;
+            border: none;
             color: var(--nav-btn-color);
             cursor: pointer;
             width: 44px;
@@ -129,72 +128,128 @@
             align-items: center;
             justify-content: center;
             border-radius: 12px;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            transition: all 0.3s ease;
         }
 
-        .box-btn:hover {
+        .nav-btn:hover {
             background: var(--card-hover-bg);
             color: var(--nav-btn-hover);
-            border-color: var(--primary);
-            transform: translateY(-2px);
         }
 
-        .box-btn svg {
-            width: 20px;
-            height: 20px;
+        .nav-btn svg {
+            width: 24px;
+            height: 24px;
             fill: none;
             stroke: currentColor;
-            stroke-width: 2.5;
+            stroke-width: 2;
             stroke-linecap: round;
             stroke-linejoin: round;
         }
 
-        /* The Menu Card Dropdown (Καρτέλα) */
-        .menu-card {
-            position: absolute;
-            top: calc(100% + 10px);
-            right: 0;
-            width: 220px;
+        /* Sidebar Overlay Navigation Menu */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -320px;
+            width: 300px;
+            height: 100%;
             background: var(--glass-menu-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 12px;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            z-index: 100;
-            opacity: 0;
-            transform: translateY(-10px) scale(0.95);
-            pointer-events: none;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
+            border-right: 1px solid var(--border-color);
+            z-index: 1000;
+            padding: 40px 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            transition: left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 10px 0 30px rgba(0, 0, 0, 0.25);
         }
 
-        .menu-card.active {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-            pointer-events: auto;
+        .sidebar.active {
+            left: 0;
         }
 
-        .menu-item {
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+        }
+
+        .sidebar-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
             color: var(--text-primary);
-            text-decoration: none;
-            padding: 10px 16px;
-            font-size: 0.95rem;
-            font-weight: 500;
-            border-radius: 10px;
-            transition: all 0.2s ease;
-            text-align: left;
         }
 
-        .menu-item:hover {
-            background: var(--card-hover-bg);
+        .close-btn {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            transition: background 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background: var(--border-color);
+        }
+
+        .close-btn svg {
+            width: 22px;
+            height: 22px;
+            stroke: currentColor;
+            stroke-width: 2;
+        }
+
+        .sidebar-links {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .sidebar-link {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 10px 15px;
+            border-radius: 12px;
+        }
+
+        .sidebar-link:hover {
             color: var(--primary);
+            background: var(--card-hover-bg);
             padding-left: 20px;
+        }
+
+        /* Backdrop overlay for sidebar closing click */
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(4px);
+            z-index: 999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .sidebar-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
         }
 
         /* Section Titles */
@@ -605,30 +660,41 @@
 </head>
 <body>
 
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <div class="sidebar" id="sidebarMenu">
+        <div class="sidebar-header">
+            <div class="sidebar-title">Menu</div>
+            <button class="close-btn" id="closeMenuBtn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        <div class="sidebar-links">
+            <a href="#about" class="sidebar-link" id="linkAbout">About</a>
+            <a href="#certifications" class="sidebar-link" id="linkCerts">Certifications</a>
+            <a href="#contact" class="sidebar-link" id="linkContact">Contact</a>
+        </div>
+    </div>
+
     <div class="container">
         
         <nav class="navbar">
             <div class="logo">CM</div>
             <div class="nav-actions">
-                <button class="box-btn" id="themeToggleBtn" aria-label="Toggle Theme">
+                <button class="nav-btn" id="openMenuBtn">
+                    <svg viewBox="0 0 24 24">
+                        <line x1="4" y1="12" x2="20" y2="12"></line>
+                        <line x1="4" y1="6" x2="20" y2="6"></line>
+                        <line x1="4" y1="18" x2="20" y2="18"></line>
+                    </svg>
+                </button>
+                <button class="nav-btn" id="themeToggleBtn">
                     <svg id="themeIcon" viewBox="0 0 24 24">
                         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                     </svg>
                 </button>
-                
-                <button class="box-btn" id="menuToggleBtn" aria-label="Toggle Menu">
-                    <svg viewBox="0 0 24 24">
-                        <line x1="3" y1="12" x2="21" y2="12"></line>
-                        <line x1="3" y1="6" x2="21" y2="6"></line>
-                        <line x1="3" y1="18" x2="21" y2="18"></line>
-                    </svg>
-                </button>
-            </div>
-
-            <div class="menu-card" id="menuCard">
-                <a href="#about" class="menu-item">About Me</a>
-                <a href="#certifications" class="menu-item">Certifications</a>
-                <a href="#contact" class="menu-item">Contact</a>
             </div>
         </nav>
 
@@ -671,7 +737,7 @@
             <div class="certifications-grid">
                 
                 <a href="https://verify.skilljar.com/c/iti3y3dsu2ns" target="_blank" class="certification-card">
-                    <span class="view-badge">View Certificate</span>
+                    <span class="view-badge">View Certificate &rarr;</span>
                     <div class="card-header">
                         <div class="card-icon">
                             <img src="./image_95a72c.png" alt="Anthropic Logo">
@@ -691,7 +757,7 @@
                 </a>
 
                 <a href="https://certificates.mooc.fi/validate/w9aam5uag8" target="_blank" class="certification-card">
-                    <span class="view-badge">View Certificate</span>
+                    <span class="view-badge">View Certificate &rarr;</span>
                     <div class="card-header">
                         <div class="card-icon">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/University_of_Helsinki_logo.svg/120px-University_of_Helsinki_logo.svg.png" alt="University of Helsinki Logo">
@@ -709,7 +775,7 @@
                 </a>
 
                 <a href="https://www.credly.com/badges/514fb70c-1f70-45cd-94f0-a6cee2045f86/linked_in_profile" target="_blank" class="certification-card">
-                    <span class="view-badge">View Certificate</span>
+                    <span class="view-badge">View Certificate &rarr;</span>
                     <div class="card-header">
                         <div class="card-icon">
                             <img src="https://cdn.simpleicons.org/amazonwebservices/FF9900" onerror="this.src='https://www.vectorlogo.zone/logos/amazon_aws/amazon_aws-icon.svg'" alt="AWS Logo">
@@ -728,7 +794,7 @@
                 </a>
 
                 <a href="https://www.kaggle.com/learn/certification/chrismantelos/pandas" target="_blank" class="certification-card">
-                    <span class="view-badge">View Certificate</span>
+                    <span class="view-badge">View Certificate &rarr;</span>
                     <div class="card-header">
                         <div class="card-icon">
                             <img src="https://cdn.simpleicons.org/kaggle/20BEFF" onerror="this.src='https://www.vectorlogo.zone/logos/kaggle/kaggle-icon.svg'" alt="Kaggle Logo">
@@ -747,7 +813,7 @@
                 </a>
 
                 <a href="https://www.kaggle.com/learn/certification/chrismantelos/python" target="_blank" class="certification-card">
-                    <span class="view-badge">View Certificate</span>
+                    <span class="view-badge">View Certificate &rarr;</span>
                     <div class="card-header">
                         <div class="card-icon">
                             <img src="https://cdn.simpleicons.org/kaggle/20BEFF" onerror="this.src='https://www.vectorlogo.zone/logos/kaggle/kaggle-icon.svg'" alt="Kaggle Logo">
@@ -766,7 +832,7 @@
                 </a>
 
                 <a href="https://me.developers.google.com/u/105513592764299577416" target="_blank" class="certification-card">
-                    <span class="view-badge">View Certificate</span>
+                    <span class="view-badge">View Certificate &rarr;</span>
                     <div class="card-header">
                         <div class="card-icon">
                             <img src="https://cdn.simpleicons.org/flutter/02569B" onerror="this.src='https://www.vectorlogo.zone/logos/flutterio/flutterio-icon.svg'" alt="Flutter Logo">
@@ -786,7 +852,7 @@
                 </a>
 
                 <a href="https://www.linkedin.com/learning/certificates/79f1323ccc56830fc4182fe687d33766e3441df49ee20c4da7ef64bca03645bf" target="_blank" class="certification-card">
-                    <span class="view-badge">View Certificate</span>
+                    <span class="view-badge">View Certificate &rarr;</span>
                     <div class="card-header">
                         <div class="card-icon">
                             <img src="https://cdn.simpleicons.org/microsoft/00A4EF" onerror="this.src='https://www.vectorlogo.zone/logos/microsoft/microsoft-icon.svg'" alt="Microsoft Logo">
@@ -806,7 +872,7 @@
                 </a>
 
                 <a href="https://www.credly.com/badges/1677b59d-d436-482c-8bd6-e71d116e79b1/linked_in_profile" target="_blank" class="certification-card">
-                    <span class="view-badge">View Certificate</span>
+                    <span class="view-badge">View Certificate &rarr;</span>
                     <div class="card-header">
                         <div class="card-icon">
                             <img src="https://cdn.simpleicons.org/googlecloud/4285F4" onerror="this.src='https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg'" alt="Google Cloud Logo">
@@ -826,7 +892,7 @@
                 </a>
 
                 <a href="https://www.skills.google/public_profiles/6448f04e-9e98-406b-9d25-b0f5e48e45b7/badges/23834360?utm_medium=social&utm_source=linkedin&utm_campaign=ql-social-share" target="_blank" class="certification-card">
-                    <span class="view-badge">View Certificate</span>
+                    <span class="view-badge">View Certificate &rarr;</span>
                     <div class="card-header">
                         <div class="card-icon">
                             <img src="https://cdn.simpleicons.org/googlecloud/4285F4" onerror="this.src='https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg'" alt="Google Cloud Logo">
@@ -846,7 +912,7 @@
                 </a>
 
                 <a href="https://cognitiveclass.ai/certificates/4f605ca5-75b6-45bf-a5f0-3c3331dbf964" target="_blank" class="certification-card">
-                    <span class="view-badge">View Certificate</span>
+                    <span class="view-badge">View Certificate &rarr;</span>
                     <div class="card-header">
                         <div class="card-icon">
                             <img src="https://cdn.simpleicons.org/ibm/052FAD" onerror="this.src='https://www.vectorlogo.zone/logos/ibm/ibm-icon.svg'" alt="IBM Logo">
@@ -865,7 +931,7 @@
                 </a>
 
                 <a href="https://www.freecodecamp.org/certification/chrismantelos/python-v9" target="_blank" class="certification-card">
-                    <span class="view-badge">View Certificate</span>
+                    <span class="view-badge">View Certificate &rarr;</span>
                     <div class="card-header">
                         <div class="card-icon">
                             <img src="./image_95a78a.png" alt="freeCodeCamp Logo">
@@ -929,44 +995,50 @@
     </div>
 
     <script>
-        const menuToggleBtn = document.getElementById('menuToggleBtn');
-        const menuCard = document.getElementById('menuCard');
+        const sidebarMenu = document.getElementById('sidebarMenu');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+        const openMenuBtn = document.getElementById('openMenuBtn');
+        const closeMenuBtn = document.getElementById('closeMenuBtn');
         const themeToggleBtn = document.getElementById('themeToggleBtn');
         const themeIcon = document.getElementById('themeIcon');
 
-        // Toggle the Menu Card
-        menuToggleBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            menuCard.classList.toggle('active');
+        // Sidebar Navigation Trigger Functions
+        function openSidebar() {
+            sidebarMenu.classList.add('active');
+            sidebarOverlay.classList.add('active');
+        }
+
+        function closeSidebar() {
+            sidebarMenu.classList.remove('active');
+            sidebarOverlay.classList.remove('active');
+        }
+
+        openMenuBtn.addEventListener('click', openSidebar);
+        closeMenuBtn.addEventListener('click', closeSidebar);
+        sidebarOverlay.addEventListener('click', closeSidebar);
+
+        // Close sidebar automatically after clicking any link
+        const navLinks = [
+            document.getElementById('linkAbout'),
+            document.getElementById('linkCerts'),
+            document.getElementById('linkContact')
+        ];
+        navLinks.forEach(link => {
+            link.addEventListener('click', closeSidebar);
         });
 
-        // Close Menu Card when clicking anywhere outside of it
-        document.addEventListener('click', (e) => {
-            if (!menuCard.contains(e.target) && e.target !== menuToggleBtn) {
-                menuCard.classList.remove('active');
-            }
-        });
-
-        // Close Menu Card on link click
-        const menuItems = document.querySelectorAll('.menu-item');
-        menuItems.forEach(item => {
-            item.addEventListener('click', () => {
-                menuCard.classList.remove('active');
-            });
-        });
-
-        // Light / Dark Theme Switching Logic
+        // Theme Toggle Functionality (Light / Dark Mode)
         themeToggleBtn.addEventListener('click', () => {
             const currentTheme = document.documentElement.getAttribute('data-theme');
             if (currentTheme === 'light') {
-                // Switch to Dark Theme
+                // Switch to Dark Mode
                 document.documentElement.removeAttribute('data-theme');
-                // Set Icon back to Moon SVG
+                // Set icon back to Moon SVG
                 themeIcon.innerHTML = `<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>`;
             } else {
-                // Switch to Light Theme
+                // Switch to Light Mode
                 document.documentElement.setAttribute('data-theme', 'light');
-                // Set Icon to Sun SVG
+                // Set icon to Sun SVG
                 themeIcon.innerHTML = `
                     <circle cx="12" cy="12" r="5"></circle>
                     <line x1="12" y1="1" x2="12" y2="3"></line>
