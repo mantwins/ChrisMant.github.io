@@ -28,9 +28,10 @@
             --border-color: rgba(255, 255, 255, 0.08);
             --text-primary: #f1f5f9;
             --text-secondary: #94a3b8;
-            --glass-menu-bg: rgba(30, 41, 59, 0.75);
+            --glass-menu-bg: rgba(15, 23, 42, 0.95); /* Πιο συμπαγές για το sidebar */
             --nav-btn-color: #f1f5f9;
             --nav-btn-hover: #a5b4fc;
+            --overlay-bg: rgba(0, 0, 0, 0.5);
         }
 
         [data-theme="light"] {
@@ -41,9 +42,10 @@
             --border-color: rgba(15, 23, 42, 0.08);
             --text-primary: #0f172a;
             --text-secondary: #475569;
-            --glass-menu-bg: rgba(255, 255, 255, 0.85);
+            --glass-menu-bg: rgba(255, 255, 255, 0.98);
             --nav-btn-color: #0f172a;
             --nav-btn-hover: #6366f1;
+            --overlay-bg: rgba(0, 0, 0, 0.3);
         }
 
         html {
@@ -60,7 +62,7 @@
             transition: background 0.5s ease, color 0.5s ease;
         }
 
-        /* Decorative background glows - visible mostly in dark mode */
+        /* Decorative background glows */
         body::before {
             content: '';
             position: fixed;
@@ -75,22 +77,17 @@
             z-index: -1;
         }
 
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 40px 24px 60px 24px;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Navigation Bar (With CM Logo & Header Buttons) */
+        /* FULL-WIDTH NAVBAR: Stretching edge-to-edge of the viewport */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 0;
-            margin-bottom: 50px;
+            padding: 20px 4%; 
             border-bottom: 1px solid var(--border-color);
+            position: relative; 
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 90; 
             animation: slideInDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
         }
 
@@ -110,16 +107,16 @@
             box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
         }
 
-        /* Action Buttons Group (Menu & Dark Mode) */
+        /* Action Buttons Group */
         .nav-actions {
             display: flex;
             align-items: center;
             gap: 12px;
         }
 
-        .nav-btn {
-            background: none;
-            border: none;
+        .box-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
             color: var(--nav-btn-color);
             cursor: pointer;
             width: 44px;
@@ -128,59 +125,86 @@
             align-items: center;
             justify-content: center;
             border-radius: 12px;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
         }
 
-        .nav-btn:hover {
+        .box-btn:hover {
             background: var(--card-hover-bg);
             color: var(--nav-btn-hover);
+            border-color: var(--primary);
+            transform: translateY(-2px);
         }
 
-        .nav-btn svg {
-            width: 24px;
-            height: 24px;
+        .box-btn svg {
+            width: 20px;
+            height: 20px;
             fill: none;
             stroke: currentColor;
-            stroke-width: 2;
+            stroke-width: 2.5;
             stroke-linecap: round;
             stroke-linejoin: round;
         }
 
-        /* Sidebar Overlay Navigation Menu */
-        .sidebar {
+        /* Background Overlay when Sidebar is open */
+        .menu-overlay {
             position: fixed;
             top: 0;
-            left: -320px;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: var(--overlay-bg);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            z-index: 150;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .menu-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* SIDEBAR MENU (Στήλη στα δεξιά της οθόνης) */
+        .sidebar-menu {
+            position: fixed;
+            top: 0;
+            right: -300px; /* Ξεκινάει έξω από την οθόνη δεξιά */
             width: 300px;
-            height: 100%;
+            height: 100vh;
             background: var(--glass-menu-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-right: 1px solid var(--border-color);
-            z-index: 1000;
-            padding: 40px 30px;
+            border-left: 1px solid var(--border-color);
+            padding: 30px 24px;
             display: flex;
             flex-direction: column;
-            gap: 40px;
-            transition: left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 10px 0 30px rgba(0, 0, 0, 0.25);
+            gap: 24px;
+            z-index: 200; /* Πάνω από όλα τα στοιχεία */
+            transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
         }
 
-        .sidebar.active {
-            left: 0;
+        .sidebar-menu.active {
+            right: 0; /* Γλιστράει μέσα στην οθόνη */
         }
 
+        /* Sidebar Header με κουμπί Close (X) */
         .sidebar-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid var(--border-color);
-            padding-bottom: 20px;
+            padding-bottom: 15px;
+            margin-bottom: 10px;
         }
 
         .sidebar-title {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 700;
             color: var(--text-primary);
         }
@@ -188,7 +212,7 @@
         .close-btn {
             background: none;
             border: none;
-            color: var(--text-primary);
+            color: var(--text-secondary);
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -196,60 +220,57 @@
             width: 36px;
             height: 36px;
             border-radius: 50%;
-            transition: background 0.3s ease;
+            transition: all 0.2s ease;
         }
 
         .close-btn:hover {
-            background: var(--border-color);
+            background: var(--card-hover-bg);
+            color: var(--primary);
         }
 
         .close-btn svg {
-            width: 22px;
-            height: 22px;
+            width: 24px;
+            height: 24px;
+            fill: none;
             stroke: currentColor;
-            stroke-width: 2;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
         }
 
+        /* Στοιχεία του Μενού στη στήλη */
         .sidebar-links {
             display: flex;
             flex-direction: column;
-            gap: 24px;
+            gap: 12px;
         }
 
-        .sidebar-link {
-            font-size: 1.25rem;
-            font-weight: 500;
-            color: var(--text-secondary);
+        .menu-item {
+            color: var(--text-primary);
             text-decoration: none;
-            transition: all 0.3s ease;
-            padding: 10px 15px;
+            padding: 12px 16px;
+            font-size: 1.05rem;
+            font-weight: 600;
             border-radius: 12px;
+            transition: all 0.25s ease;
+            text-align: left;
+            border: 1px solid transparent;
         }
 
-        .sidebar-link:hover {
-            color: var(--primary);
+        .menu-item:hover {
             background: var(--card-hover-bg);
-            padding-left: 20px;
+            color: var(--primary);
+            border-color: var(--border-color);
+            padding-left: 24px;
         }
 
-        /* Backdrop overlay for sidebar closing click */
-        .sidebar-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(4px);
-            z-index: 999;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.4s ease;
-        }
-
-        .sidebar-overlay.active {
-            opacity: 1;
-            pointer-events: auto;
+        /* Content Container */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 24px 60px 24px;
+            position: relative;
+            z-index: 1;
         }
 
         /* Section Titles */
@@ -650,7 +671,7 @@
 
         @media (max-width: 768px) {
             .navbar {
-                padding: 15px 0;
+                padding: 15px 4%;
             }
             .certifications-grid { grid-template-columns: 1fr; }
             .container { padding: 30px 16px; }
@@ -660,48 +681,50 @@
 </head>
 <body>
 
-    <div class="sidebar-overlay" id="sidebarOverlay"></div>
-    <div class="sidebar" id="sidebarMenu">
+    <div class="menu-overlay" id="menuOverlay"></div>
+
+    <nav class="navbar">
+        <div class="logo">CM</div>
+        <div class="nav-actions">
+            <button class="box-btn" id="menuToggleBtn" aria-label="Toggle Menu">
+                <svg viewBox="0 0 24 24">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+
+            <button class="box-btn" id="themeToggleBtn" aria-label="Toggle Theme">
+                <svg id="themeIcon" viewBox="0 0 24 24">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <div class="sidebar-menu" id="sidebarMenu">
         <div class="sidebar-header">
-            <div class="sidebar-title">Menu</div>
-            <button class="close-btn" id="closeMenuBtn">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <span class="sidebar-title">Menu</span>
+            <button class="close-btn" id="closeMenuBtn" aria-label="Close Menu">
+                <svg viewBox="0 0 24 24">
                     <line x1="18" y1="6" x2="6" y2="18"></line>
                     <line x1="6" y1="6" x2="18" y2="18"></line>
                 </svg>
             </button>
         </div>
         <div class="sidebar-links">
-            <a href="#about" class="sidebar-link" id="linkAbout">About</a>
-            <a href="#certifications" class="sidebar-link" id="linkCerts">Certifications</a>
-            <a href="#contact" class="sidebar-link" id="linkContact">Contact</a>
+            <a href="#about" class="menu-item">About Me</a>
+            <a href="#certifications" class="menu-item">Certifications</a>
+            <a href="#contact" class="menu-item">Contact</a>
         </div>
     </div>
 
     <div class="container">
         
-        <nav class="navbar">
-            <div class="logo">CM</div>
-            <div class="nav-actions">
-                <button class="nav-btn" id="openMenuBtn">
-                    <svg viewBox="0 0 24 24">
-                        <line x1="4" y1="12" x2="20" y2="12"></line>
-                        <line x1="4" y1="6" x2="20" y2="6"></line>
-                        <line x1="4" y1="18" x2="20" y2="18"></line>
-                    </svg>
-                </button>
-                <button class="nav-btn" id="themeToggleBtn">
-                    <svg id="themeIcon" viewBox="0 0 24 24">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                </button>
-            </div>
-        </nav>
-
         <div id="about" class="about-card">
             <h2>About Me</h2>
             <p>
-                I am a student at <strong>SAEK Thermis</strong> (formerly IEK) specializing in Computer Science and New Technologies. 
+                I am a student at <strong>SAEK Thermis</strong> specializing in Computer Science and New Technologies. 
                 My passion lies in Software Development, Machine Learning, and Artificial Intelligence (AI). 
                 Through continuous learning and earning specialized certifications from leading global organizations, 
                 I develop practical skills to build smart, efficient, and modern digital solutions.
@@ -737,7 +760,7 @@
             <div class="certifications-grid">
                 
                 <a href="https://verify.skilljar.com/c/iti3y3dsu2ns" target="_blank" class="certification-card">
-                    <span class="view-badge">View Certificate &rarr;</span>
+                    <span class="view-badge">View Certificate</span>
                     <div class="card-header">
                         <div class="card-icon">
                             <img src="./image_95a72c.png" alt="Anthropic Logo">
@@ -757,7 +780,7 @@
                 </a>
 
                 <a href="https://certificates.mooc.fi/validate/w9aam5uag8" target="_blank" class="certification-card">
-                    <span class="view-badge">View Certificate &rarr;</span>
+                    <span class="view-badge">View Certificate</span>
                     <div class="card-header">
                         <div class="card-icon">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/University_of_Helsinki_logo.svg/120px-University_of_Helsinki_logo.svg.png" alt="University of Helsinki Logo">
@@ -775,7 +798,7 @@
                 </a>
 
                 <a href="https://www.credly.com/badges/514fb70c-1f70-45cd-94f0-a6cee2045f86/linked_in_profile" target="_blank" class="certification-card">
-                    <span class="view-badge">View Certificate &rarr;</span>
+                    <span class="view-badge">View Certificate</span>
                     <div class="card-header">
                         <div class="card-icon">
                             <img src="https://cdn.simpleicons.org/amazonwebservices/FF9900" onerror="this.src='https://www.vectorlogo.zone/logos/amazon_aws/amazon_aws-icon.svg'" alt="AWS Logo">
@@ -794,7 +817,7 @@
                 </a>
 
                 <a href="https://www.kaggle.com/learn/certification/chrismantelos/pandas" target="_blank" class="certification-card">
-                    <span class="view-badge">View Certificate &rarr;</span>
+                    <span class="view-badge">View Certificate</span>
                     <div class="card-header">
                         <div class="card-icon">
                             <img src="https://cdn.simpleicons.org/kaggle/20BEFF" onerror="this.src='https://www.vectorlogo.zone/logos/kaggle/kaggle-icon.svg'" alt="Kaggle Logo">
@@ -813,7 +836,7 @@
                 </a>
 
                 <a href="https://www.kaggle.com/learn/certification/chrismantelos/python" target="_blank" class="certification-card">
-                    <span class="view-badge">View Certificate &rarr;</span>
+                    <span class="view-badge">View Certificate</span>
                     <div class="card-header">
                         <div class="card-icon">
                             <img src="https://cdn.simpleicons.org/kaggle/20BEFF" onerror="this.src='https://www.vectorlogo.zone/logos/kaggle/kaggle-icon.svg'" alt="Kaggle Logo">
@@ -832,7 +855,7 @@
                 </a>
 
                 <a href="https://me.developers.google.com/u/105513592764299577416" target="_blank" class="certification-card">
-                    <span class="view-badge">View Certificate &rarr;</span>
+                    <span class="view-badge">View Certificate</span>
                     <div class="card-header">
                         <div class="card-icon">
                             <img src="https://cdn.simpleicons.org/flutter/02569B" onerror="this.src='https://www.vectorlogo.zone/logos/flutterio/flutterio-icon.svg'" alt="Flutter Logo">
@@ -852,7 +875,7 @@
                 </a>
 
                 <a href="https://www.linkedin.com/learning/certificates/79f1323ccc56830fc4182fe687d33766e3441df49ee20c4da7ef64bca03645bf" target="_blank" class="certification-card">
-                    <span class="view-badge">View Certificate &rarr;</span>
+                    <span class="view-badge">View Certificate</span>
                     <div class="card-header">
                         <div class="card-icon">
                             <img src="https://cdn.simpleicons.org/microsoft/00A4EF" onerror="this.src='https://www.vectorlogo.zone/logos/microsoft/microsoft-icon.svg'" alt="Microsoft Logo">
@@ -872,7 +895,7 @@
                 </a>
 
                 <a href="https://www.credly.com/badges/1677b59d-d436-482c-8bd6-e71d116e79b1/linked_in_profile" target="_blank" class="certification-card">
-                    <span class="view-badge">View Certificate &rarr;</span>
+                    <span class="view-badge">View Certificate</span>
                     <div class="card-header">
                         <div class="card-icon">
                             <img src="https://cdn.simpleicons.org/googlecloud/4285F4" onerror="this.src='https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg'" alt="Google Cloud Logo">
@@ -892,7 +915,7 @@
                 </a>
 
                 <a href="https://www.skills.google/public_profiles/6448f04e-9e98-406b-9d25-b0f5e48e45b7/badges/23834360?utm_medium=social&utm_source=linkedin&utm_campaign=ql-social-share" target="_blank" class="certification-card">
-                    <span class="view-badge">View Certificate &rarr;</span>
+                    <span class="view-badge">View Certificate</span>
                     <div class="card-header">
                         <div class="card-icon">
                             <img src="https://cdn.simpleicons.org/googlecloud/4285F4" onerror="this.src='https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg'" alt="Google Cloud Logo">
@@ -912,7 +935,7 @@
                 </a>
 
                 <a href="https://cognitiveclass.ai/certificates/4f605ca5-75b6-45bf-a5f0-3c3331dbf964" target="_blank" class="certification-card">
-                    <span class="view-badge">View Certificate &rarr;</span>
+                    <span class="view-badge">View Certificate</span>
                     <div class="card-header">
                         <div class="card-icon">
                             <img src="https://cdn.simpleicons.org/ibm/052FAD" onerror="this.src='https://www.vectorlogo.zone/logos/ibm/ibm-icon.svg'" alt="IBM Logo">
@@ -931,7 +954,7 @@
                 </a>
 
                 <a href="https://www.freecodecamp.org/certification/chrismantelos/python-v9" target="_blank" class="certification-card">
-                    <span class="view-badge">View Certificate &rarr;</span>
+                    <span class="view-badge">View Certificate</span>
                     <div class="card-header">
                         <div class="card-icon">
                             <img src="./image_95a78a.png" alt="freeCodeCamp Logo">
@@ -995,50 +1018,45 @@
     </div>
 
     <script>
-        const sidebarMenu = document.getElementById('sidebarMenu');
-        const sidebarOverlay = document.getElementById('sidebarOverlay');
-        const openMenuBtn = document.getElementById('openMenuBtn');
+        const menuToggleBtn = document.getElementById('menuToggleBtn');
         const closeMenuBtn = document.getElementById('closeMenuBtn');
+        const sidebarMenu = document.getElementById('sidebarMenu');
+        const menuOverlay = document.getElementById('menuOverlay');
         const themeToggleBtn = document.getElementById('themeToggleBtn');
         const themeIcon = document.getElementById('themeIcon');
 
-        // Sidebar Navigation Trigger Functions
+        // Functions to Open/Close Sidebar
         function openSidebar() {
             sidebarMenu.classList.add('active');
-            sidebarOverlay.classList.add('active');
+            menuOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Κλειδώνει το scrolling πίσω
         }
 
         function closeSidebar() {
             sidebarMenu.classList.remove('active');
-            sidebarOverlay.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto'; // Επαναφέρει το scrolling
         }
 
-        openMenuBtn.addEventListener('click', openSidebar);
+        // Event Listeners for Open/Close
+        menuToggleBtn.addEventListener('click', openSidebar);
         closeMenuBtn.addEventListener('click', closeSidebar);
-        sidebarOverlay.addEventListener('click', closeSidebar);
+        menuOverlay.addEventListener('click', closeSidebar);
 
-        // Close sidebar automatically after clicking any link
-        const navLinks = [
-            document.getElementById('linkAbout'),
-            document.getElementById('linkCerts'),
-            document.getElementById('linkContact')
-        ];
-        navLinks.forEach(link => {
-            link.addEventListener('click', closeSidebar);
+        // Close Sidebar on link click
+        const menuItems = document.querySelectorAll('.menu-item');
+        menuItems.forEach(item => {
+            item.addEventListener('click', closeSidebar);
         });
 
-        // Theme Toggle Functionality (Light / Dark Mode)
+        // Light / Dark Theme Switching Logic
         themeToggleBtn.addEventListener('click', () => {
             const currentTheme = document.documentElement.getAttribute('data-theme');
             if (currentTheme === 'light') {
-                // Switch to Dark Mode
                 document.documentElement.removeAttribute('data-theme');
-                // Set icon back to Moon SVG
                 themeIcon.innerHTML = `<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>`;
             } else {
-                // Switch to Light Mode
                 document.documentElement.setAttribute('data-theme', 'light');
-                // Set icon to Sun SVG
                 themeIcon.innerHTML = `
                     <circle cx="12" cy="12" r="5"></circle>
                     <line x1="12" y1="1" x2="12" y2="3"></line>
