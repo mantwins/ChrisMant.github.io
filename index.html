@@ -16,21 +16,21 @@
 
         /* Variables for Light & Dark Themes */
         :root {
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
-            --secondary: #ec4899;
-            --accent: #06b6d4;
+            --primary: #4f46e5;      /* Tech Royal Blue */
+            --primary-dark: #3730a3;
+            --secondary: #0891b2;    /* Deep Cyan */
+            --accent: #06b6d4;       /* Neon Cyan */
             
             /* Dark Theme Colors (Default) */
             --bg-gradient: linear-gradient(135deg, #0f172a 0%, #0b0f19 50%, #0f172a 100%);
             --card-bg: rgba(30, 41, 59, 0.45);
-            --card-hover-bg: rgba(99, 102, 241, 0.12);
+            --card-hover-bg: rgba(6, 182, 212, 0.08);
             --border-color: rgba(255, 255, 255, 0.08);
             --text-primary: #f1f5f9;
             --text-secondary: #94a3b8;
             --glass-menu-bg: rgba(15, 23, 42, 0.95);
             --nav-btn-color: #f1f5f9;
-            --nav-btn-hover: #a5b4fc;
+            --nav-btn-hover: #06b6d4;
             --overlay-bg: rgba(0, 0, 0, 0.5);
         }
 
@@ -38,13 +38,13 @@
             /* Light Theme Colors */
             --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%);
             --card-bg: rgba(255, 255, 255, 0.75);
-            --card-hover-bg: rgba(99, 102, 241, 0.05);
+            --card-hover-bg: rgba(6, 182, 212, 0.04);
             --border-color: rgba(15, 23, 42, 0.08);
             --text-primary: #0f172a;
             --text-secondary: #475569;
             --glass-menu-bg: rgba(255, 255, 255, 0.98);
             --nav-btn-color: #0f172a;
-            --nav-btn-hover: #6366f1;
+            --nav-btn-hover: #4f46e5;
             --overlay-bg: rgba(0, 0, 0, 0.3);
         }
 
@@ -71,8 +71,8 @@
             width: 100%;
             height: 100%;
             background: 
-                radial-gradient(circle at 10% 30%, rgba(99, 102, 241, 0.08) 0%, transparent 45%),
-                radial-gradient(circle at 90% 70%, rgba(236, 72, 153, 0.08) 0%, transparent 45%);
+                radial-gradient(circle at 10% 30%, rgba(79, 70, 229, 0.08) 0%, transparent 45%),
+                radial-gradient(circle at 90% 70%, rgba(6, 182, 212, 0.08) 0%, transparent 45%);
             pointer-events: none;
             z-index: -1;
         }
@@ -95,7 +95,7 @@
             font-family: 'Space Grotesk', sans-serif;
             font-size: 1.3rem;
             font-weight: 700;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: linear-gradient(135deg, var(--primary), var(--accent));
             color: #fff;
             width: 44px;
             height: 44px;
@@ -104,7 +104,7 @@
             justify-content: center;
             border-radius: 12px;
             letter-spacing: -0.5px;
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+            box-shadow: 0 4px 12px rgba(6, 182, 212, 0.25);
         }
 
         /* Action Buttons Group */
@@ -133,7 +133,7 @@
         .box-btn:hover {
             background: var(--card-hover-bg);
             color: var(--nav-btn-hover);
-            border-color: var(--primary);
+            border-color: var(--accent);
             transform: translateY(-2px);
         }
 
@@ -225,7 +225,7 @@
 
         .close-btn:hover {
             background: var(--card-hover-bg);
-            color: var(--primary);
+            color: var(--accent);
         }
 
         .close-btn svg {
@@ -259,7 +259,7 @@
 
         .menu-item:hover {
             background: var(--card-hover-bg);
-            color: var(--primary);
+            color: var(--accent);
             border-color: var(--border-color);
             padding-left: 24px;
         }
@@ -288,7 +288,7 @@
         }
 
         .hero-title span {
-            background: linear-gradient(135deg, var(--primary) 30%, var(--secondary) 100%);
+            background: linear-gradient(135deg, var(--primary) 20%, var(--accent) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -320,12 +320,12 @@
         .hero-btn-primary {
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: #fff;
-            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+            box-shadow: 0 8px 20px rgba(79, 70, 229, 0.3);
         }
 
         .hero-btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 12px 24px rgba(99, 102, 241, 0.45);
+            box-shadow: 0 12px 24px rgba(79, 70, 229, 0.45);
             filter: brightness(1.1);
         }
 
@@ -339,7 +339,7 @@
 
         .hero-btn-secondary:hover {
             background: var(--card-hover-bg);
-            border-color: var(--primary);
+            border-color: var(--accent);
             transform: translateY(-2px);
         }
 
@@ -374,7 +374,7 @@
             transform: translateX(-50%);
             width: 50px;
             height: 3px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            background: linear-gradient(90deg, var(--primary), var(--accent));
             border-radius: 2px;
         }
 
@@ -472,19 +472,19 @@
 
         .certification-card:hover {
             background: var(--card-hover-bg);
-            border-color: rgba(99, 102, 241, 0.35);
+            border-color: rgba(6, 182, 212, 0.35);
             transform: translateY(-6px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2), 
-                        0 0 30px rgba(99, 102, 241, 0.1);
+                        0 0 30px rgba(6, 182, 212, 0.15);
         }
 
         .view-badge {
             position: absolute;
             top: 20px;
             right: 20px;
-            background: rgba(99, 102, 241, 0.15);
-            border: 1px solid rgba(99, 102, 241, 0.3);
-            color: var(--primary);
+            background: rgba(6, 182, 212, 0.15);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            color: var(--accent);
             padding: 5px 10px;
             border-radius: 30px;
             font-size: 0.72rem;
@@ -544,7 +544,7 @@
         }
 
         .certification-card:hover .organization {
-            color: var(--primary);
+            color: var(--accent);
         }
 
         .date {
@@ -569,8 +569,8 @@
         }
 
         .certification-card:hover .credential-id {
-            background: rgba(99, 102, 241, 0.08);
-            border-left-color: var(--primary);
+            background: rgba(6, 182, 212, 0.08);
+            border-left-color: var(--accent);
             color: var(--text-primary);
         }
 
@@ -708,7 +708,7 @@
         .contact-form textarea:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 10px rgba(99, 102, 241, 0.2);
+            box-shadow: 0 0 10px rgba(79, 70, 229, 0.2);
         }
 
         .submit-btn {
@@ -730,7 +730,7 @@
 
         .submit-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
+            box-shadow: 0 8px 20px rgba(79, 70, 229, 0.4);
             filter: brightness(1.1);
         }
 
@@ -826,7 +826,7 @@
     </div>
 
     <section class="hero-section">
-        <h1 class="hero-title">Hi, I'm <span>Christos Mantelos</span> 👋</h1>
+        <h1 class="hero-title">Hi, I'm <span>Christos Mantelos</span></h1>
         <p class="hero-subtitle">
             Specializing in Software Development, Machine Learning, and Artificial Intelligence (AI). 
             Exploring modern technology and crafting smart, efficient digital solutions.
@@ -1107,7 +1107,7 @@
                             <img src="https://cdn.simpleicons.org/github/ffffff" width="18" height="18" alt="GitHub Logo"> 
                             View my GitHub
                         </a>
-                        <a href="#" target="_blank" class="social-link-btn linkedin">
+                        <a href="https://www.linkedin.com/in/chris-mantelos-3983b43b5/" target="_blank" class="social-link-btn linkedin">
                             <img src="https://cdn.simpleicons.org/linkedin/ffffff" width="18" height="18" alt="LinkedIn Logo"> 
                             Connect on LinkedIn
                         </a>
@@ -1157,6 +1157,7 @@
             document.body.style.overflow = 'hidden'; 
         }
 
+        // Close Sidebar
         function closeSidebar() {
             sidebarMenu.classList.remove('active');
             menuOverlay.classList.remove('active');
