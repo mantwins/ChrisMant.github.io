@@ -75,17 +75,23 @@
             z-index: -1;
         }
 
-        /* FULL-WIDTH NAVBAR: Stretching edge-to-edge of the viewport */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 24px 60px 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Navigation Bar */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 4%; /* 4% padding on left/right makes it span beautifully across the entire screen */
+            padding: 20px 0;
+            margin-bottom: 50px;
             border-bottom: 1px solid var(--border-color);
-            position: relative; 
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            z-index: 100; /* High z-index to stay above other elements */
+            position: relative; /* Essential for aligning the dropdown menu card */
             animation: slideInDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
         }
 
@@ -149,7 +155,7 @@
         .menu-card {
             position: absolute;
             top: calc(100% + 10px);
-            right: 4%; /* Perfectly aligns with the right edge of the navbar buttons */
+            right: 0;
             width: 220px;
             background: var(--glass-menu-bg);
             border: 1px solid var(--border-color);
@@ -189,15 +195,6 @@
             background: var(--card-hover-bg);
             color: var(--primary);
             padding-left: 20px;
-        }
-
-        /* Content Container */
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 40px 24px 60px 24px;
-            position: relative;
-            z-index: 1;
         }
 
         /* Section Titles */
@@ -598,7 +595,7 @@
 
         @media (max-width: 768px) {
             .navbar {
-                padding: 15px 4%;
+                padding: 15px 0;
             }
             .certifications-grid { grid-template-columns: 1fr; }
             .container { padding: 30px 16px; }
@@ -608,37 +605,37 @@
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="logo">CM</div>
-        <div class="nav-actions">
-            <button class="box-btn" id="menuToggleBtn" aria-label="Toggle Menu">
-                <svg viewBox="0 0 24 24">
-                    <line x1="3" y1="12" x2="21" y2="12"></line>
-                    <line x1="3" y1="6" x2="21" y2="6"></line>
-                    <line x1="3" y1="18" x2="21" y2="18"></line>
-                </svg>
-            </button>
-
-            <button class="box-btn" id="themeToggleBtn" aria-label="Toggle Theme">
-                <svg id="themeIcon" viewBox="0 0 24 24">
-                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                </svg>
-            </button>
-        </div>
-
-        <div class="menu-card" id="menuCard">
-            <a href="#about" class="menu-item">About Me</a>
-            <a href="#certifications" class="menu-item">Certifications</a>
-            <a href="#contact" class="menu-item">Contact</a>
-        </div>
-    </nav>
-
     <div class="container">
         
+        <nav class="navbar">
+            <div class="logo">CM</div>
+            <div class="nav-actions">
+                <button class="box-btn" id="themeToggleBtn" aria-label="Toggle Theme">
+                    <svg id="themeIcon" viewBox="0 0 24 24">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+                
+                <button class="box-btn" id="menuToggleBtn" aria-label="Toggle Menu">
+                    <svg viewBox="0 0 24 24">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="menu-card" id="menuCard">
+                <a href="#about" class="menu-item">About Me</a>
+                <a href="#certifications" class="menu-item">Certifications</a>
+                <a href="#contact" class="menu-item">Contact</a>
+            </div>
+        </nav>
+
         <div id="about" class="about-card">
             <h2>About Me</h2>
             <p>
-                I am a student at <strong>SAEK Thermis</strong> specializing in Computer Science and New Technologies. 
+                I am a student at <strong>SAEK Thermis</strong> (formerly IEK) specializing in Computer Science and New Technologies. 
                 My passion lies in Software Development, Machine Learning, and Artificial Intelligence (AI). 
                 Through continuous learning and earning specialized certifications from leading global organizations, 
                 I develop practical skills to build smart, efficient, and modern digital solutions.
