@@ -10,13 +10,17 @@
     <meta name="keywords" content="Christos Mantelos, Portfolio, Developer, Software Engineer, AI, Machine Learning, Python, Flutter, SAEK Thermis">
     
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Christos Mantelos - Portfolio">
-    <meta property="og:description" content="Specializing in Software Development, Machine Learning, and Artificial Intelligence. Explore my certifications and projects.">
+    <meta property="og:title" content="Christos Mantelos - Software Development & AI Portfolio">
+    <meta property="og:description" content="Explore my projects, certifications, and expertise in AI, Machine Learning, Python, and Software Development.">
     <meta property="og:url" content="https://www.linkedin.com/in/chris-mantelos-3983b43b5/">
+    <meta property="og:image" content="https://raw.githubusercontent.com/mantwins/portfolio/main/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
 
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:title" content="Christos Mantelos - Portfolio">
-    <meta property="twitter:description" content="Specializing in Software Development, Machine Learning, and Artificial Intelligence.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Christos Mantelos - Software Development & AI Portfolio">
+    <meta name="twitter:description" content="Explore my projects, certifications, and expertise in AI, Machine Learning, Python, and Software Development.">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/mantwins/portfolio/main/og-image.png">
 
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='25' fill='%234f46e5'/%3E%3Ctext y='66' x='18' font-family='sans-serif' font-size='48' font-weight='bold' fill='%23ffffff'%3ECM%3C/text%3E%3C/svg%3E">
 
@@ -36,6 +40,7 @@
             --primary-dark: #3730a3;
             --secondary: #0891b2;    /* Deep Cyan */
             --accent: #06b6d4;       /* Neon Cyan */
+            --success: #10b981;      /* Success Green for Toast */
             
             /* Dark Theme Colors (Default) */
             --bg-gradient: linear-gradient(135deg, #0f172a 0%, #0b0f19 50%, #0f172a 100%);
@@ -44,7 +49,7 @@
             --border-color: rgba(255, 255, 255, 0.08);
             --text-primary: #f1f5f9;
             --text-secondary: #94a3b8;
-            --glass-menu-bg: rgba(15, 23, 42, 0.98); /* High opacity to prevent overlap readability issues */
+            --glass-menu-bg: rgba(15, 23, 42, 0.98);
             --nav-btn-color: #f1f5f9;
             --nav-btn-hover: #06b6d4;
             --overlay-bg: rgba(0, 0, 0, 0.7);
@@ -58,7 +63,7 @@
             --border-color: rgba(15, 23, 42, 0.08);
             --text-primary: #0f172a;
             --text-secondary: #475569;
-            --glass-menu-bg: rgba(255, 255, 255, 0.98); /* High opacity for readability */
+            --glass-menu-bg: rgba(255, 255, 255, 0.98);
             --nav-btn-color: #0f172a;
             --nav-btn-hover: #4f46e5;
             --overlay-bg: rgba(0, 0, 0, 0.4);
@@ -206,7 +211,7 @@
             background: var(--overlay-bg);
             backdrop-filter: blur(6px);
             -webkit-backdrop-filter: blur(6px);
-            z-index: 150; /* Sits between navbar and sidebar */
+            z-index: 150;
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.4s ease;
@@ -217,7 +222,7 @@
             pointer-events: auto;
         }
 
-        /* SIDEBAR MENU - FIXES GHOSTING & MOBILE OVERLAP */
+        /* SIDEBAR MENU */
         .sidebar-menu {
             position: fixed;
             top: 0;
@@ -230,13 +235,10 @@
             display: flex;
             flex-direction: column;
             gap: 24px;
-            z-index: 200; /* Highest index to always stay on top */
-            
-            /* Modern transition using translate instead of right coordinate */
+            z-index: 200;
             transform: translateX(100%);
             visibility: hidden; 
             transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.4s;
-            
             box-shadow: -10px 0 30px rgba(0, 0, 0, 0.35);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
@@ -554,13 +556,12 @@
             transform: translateX(0);
         }
 
-        /* FIXED OVERLAP BUG HERE */
         .card-header {
             display: flex;
             align-items: center;
             margin-bottom: 16px;
             gap: 14px;
-            padding-right: 125px; /* Increased from 85px to prevent title text from colliding with View Certificate badge */
+            padding-right: 125px; /* Robust padding preventing collision with View Certificate badge */
         }
 
         .card-icon {
@@ -790,6 +791,51 @@
             filter: brightness(1.1);
         }
 
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* TOAST NOTIFICATION STYLES (FEATURE #4) */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid var(--success);
+            color: #fff;
+            padding: 14px 20px;
+            border-radius: 14px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            z-index: 999;
+            opacity: 0;
+            transform: translateY(20px);
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+            visibility: visible;
+        }
+
+        .toast svg {
+            width: 22px;
+            height: 22px;
+            stroke: var(--success);
+            fill: none;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
         /* Back to Top Button style */
         .back-to-top {
             position: fixed;
@@ -862,6 +908,11 @@
                 right: 20px;
                 width: 40px;
                 height: 40px;
+            }
+            .toast {
+                left: 16px;
+                right: 16px;
+                bottom: 80px;
             }
         }
     </style>
@@ -1195,10 +1246,7 @@
                     </div>
                 </div>
 
-                <form class="contact-form" action="https://formsubmit.co/chris.mantelos.07@gmail.com" method="POST">
-                    <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" name="_template" value="table">
-                    
+                <form class="contact-form" id="contactForm">
                     <div class="form-group">
                         <label for="name">Full Name</label>
                         <input type="text" id="name" name="name" placeholder="Your name" required>
@@ -1211,8 +1259,8 @@
                         <label for="message">Message</label>
                         <textarea id="message" name="message" rows="5" placeholder="How can I help you?" required></textarea>
                     </div>
-                    <button type="submit" class="submit-btn">
-                        <span>Send Message</span>
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        <span id="submitText">Send Message</span>
                     </button>
                 </form>
             </div>
@@ -1221,6 +1269,13 @@
         <footer>
             <p>&copy; 2026 Christos Mantelos. All rights reserved.</p>
         </footer>
+    </div>
+
+    <div id="toastNotification" class="toast">
+        <svg viewBox="0 0 24 24">
+            <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <span>Message sent successfully! I will get back to you soon.</span>
     </div>
 
     <button id="backToTopBtn" class="box-btn back-to-top" aria-label="Back to Top">
@@ -1246,19 +1301,16 @@
             document.body.style.overflow = 'hidden'; 
         }
 
-        // Close Sidebar
         function closeSidebar() {
             sidebarMenu.classList.remove('active');
             menuOverlay.classList.remove('active');
             document.body.style.overflow = 'auto'; 
         }
 
-        // Event Listeners for Open/Close
         menuToggleBtn.addEventListener('click', openSidebar);
         closeMenuBtn.addEventListener('click', closeSidebar);
         menuOverlay.addEventListener('click', closeSidebar);
 
-        // Close Sidebar on link click
         const menuItems = document.querySelectorAll('.menu-item');
         menuItems.forEach(item => {
             item.addEventListener('click', closeSidebar);
@@ -1273,7 +1325,6 @@
             }
         });
 
-        // Smooth scroll to top on click
         backToTopBtn.addEventListener('click', () => {
             window.scrollTo({
                 top: 0,
@@ -1301,6 +1352,51 @@
                     <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                 `;
             }
+        });
+
+        // AJAX FORM SUBMISSION & TOAST NOTIFICATION (FEATURE #4)
+        const contactForm = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const submitText = document.getElementById('submitText');
+        const toast = document.getElementById('toastNotification');
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // UI Feedback during sending
+            submitBtn.disabled = true;
+            submitText.textContent = 'Sending...';
+
+            const formData = new FormData(contactForm);
+
+            fetch('https://formsubmit.co/ajax/chris.mantelos.07@gmail.com', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Show success toast
+                    toast.classList.add('show');
+                    contactForm.reset();
+
+                    // Hide toast after 4 seconds
+                    setTimeout(() => {
+                        toast.classList.remove('show');
+                    }, 4000);
+                } else {
+                    alert('Oops! There was a problem submitting your form.');
+                }
+            })
+            .catch(error => {
+                alert('Oops! There was a network error. Please try again.');
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                submitText.textContent = 'Send Message';
+            });
         });
     </script>
 </body>
