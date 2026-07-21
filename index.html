@@ -14,13 +14,6 @@
     <meta property="og:description" content="Explore my projects, certifications, and expertise in AI, Machine Learning, Python, and Software Development.">
     <meta property="og:url" content="https://www.linkedin.com/in/chris-mantelos-3983b43b5/">
     <meta property="og:image" content="https://raw.githubusercontent.com/mantwins/portfolio/main/og-image.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Christos Mantelos - Software Development & AI Portfolio">
-    <meta name="twitter:description" content="Explore my projects, certifications, and expertise in AI, Machine Learning, Python, and Software Development.">
-    <meta name="twitter:image" content="https://raw.githubusercontent.com/mantwins/portfolio/main/og-image.png">
 
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='25' fill='%234f46e5'/%3E%3Ctext y='66' x='18' font-family='sans-serif' font-size='48' font-weight='bold' fill='%23ffffff'%3ECM%3C/text%3E%3C/svg%3E">
 
@@ -34,7 +27,6 @@
             box-sizing: border-box;
         }
 
-        /* Variables for Light & Dark Themes */
         :root {
             --primary: #4f46e5;      
             --primary-dark: #3730a3;
@@ -42,7 +34,6 @@
             --accent: #06b6d4;       
             --success: #10b981;      
             
-            /* Dark Theme Colors (Default) */
             --bg-gradient: linear-gradient(135deg, #0f172a 0%, #0b0f19 50%, #0f172a 100%);
             --card-bg: rgba(30, 41, 59, 0.55);
             --card-hover-bg: rgba(6, 182, 212, 0.1);
@@ -57,7 +48,6 @@
         }
 
         [data-theme="light"] {
-            /* Light Theme Colors */
             --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%);
             --card-bg: rgba(255, 255, 255, 0.82);
             --card-hover-bg: rgba(6, 182, 212, 0.05);
@@ -71,13 +61,11 @@
             --bg-overlay: linear-gradient(rgba(248, 250, 252, 0.92), rgba(226, 232, 240, 0.95));
         }
 
-        /* Custom Selection Color */
         ::selection {
             background-color: rgba(6, 182, 212, 0.3);
             color: var(--text-primary);
         }
 
-        /* Custom Scrollbar */
         ::-webkit-scrollbar {
             width: 10px;
         }
@@ -114,7 +102,6 @@
             transition: background 0.5s ease, color 0.5s ease;
         }
 
-        /* BACKGROUND OVERLAY */
         body::before {
             content: '';
             position: fixed;
@@ -130,7 +117,6 @@
             transition: background 0.5s ease;
         }
 
-        /* NAVBAR */
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -219,7 +205,6 @@
             pointer-events: auto;
         }
 
-        /* SIDEBAR MENU */
         .sidebar-menu {
             position: fixed;
             top: 0;
@@ -316,7 +301,6 @@
             padding-left: 24px;
         }
 
-        /* HERO SECTION */
         .hero-section {
             display: flex;
             flex-direction: column;
@@ -428,7 +412,6 @@
             border-radius: 2px;
         }
 
-        /* ABOUT ME CARD */
         .about-card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -493,7 +476,6 @@
             margin: 0;
         }
 
-        /* GRIDS & CARDS */
         .projects-grid,
         .certifications-grid {
             display: grid;
@@ -570,15 +552,13 @@
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            overflow: hidden;
             padding: 8px;
             transition: all 0.3s ease;
         }
 
-        .card-icon img {
+        .card-icon svg {
             width: 100%;
             height: 100%;
-            object-fit: contain;
         }
 
         .project-card h3,
@@ -653,7 +633,6 @@
             border-color: rgba(6, 182, 212, 0.2);
         }
 
-        /* CONTACT SECTION */
         .contact-section {
             margin-top: 80px;
             background: var(--card-bg);
@@ -706,6 +685,12 @@
             transition: all 0.3s ease;
             width: 100%;
             max-width: 280px;
+        }
+
+        .social-link-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
         }
 
         .social-link-btn.github:hover {
@@ -992,7 +977,7 @@
                     <span class="view-badge">View Repository</span>
                     <div class="card-header">
                         <div class="card-icon">
-                            <img src="https://cdn.simpleicons.org/python/3776AB" alt="Python Logo">
+                            <svg viewBox="0 0 24 24" fill="#3776AB"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm-1.8 3.6h3.6v3.6h-3.6V3.6zm5.4 14.4H8.4v-1.8h7.2v1.8zm1.8-3.6H6.6v-1.8h10.8v1.8zm0-3.6H6.6V9h10.8v1.8z"/></svg>
                         </div>
                         <div>
                             <h3>Text Professionalizer</h3>
@@ -1011,7 +996,7 @@
                     <span class="view-badge">View Repository</span>
                     <div class="card-header">
                         <div class="card-icon">
-                            <img src="https://cdn.simpleicons.org/python/3776AB" alt="Python Logo">
+                            <svg viewBox="0 0 24 24" fill="#3776AB"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm-1.8 3.6h3.6v3.6h-3.6V3.6zm5.4 14.4H8.4v-1.8h7.2v1.8zm1.8-3.6H6.6v-1.8h10.8v1.8zm0-3.6H6.6V9h10.8v1.8z"/></svg>
                         </div>
                         <div>
                             <h3>Expense Tracker</h3>
@@ -1030,7 +1015,7 @@
                     <span class="view-badge">View Repository</span>
                     <div class="card-header">
                         <div class="card-icon">
-                            <img src="https://cdn.simpleicons.org/flutter/02569B" alt="Flutter Logo">
+                            <svg viewBox="0 0 24 24" fill="#02569B"><path d="M14.314 0L2.3 12 6 15.7 21.686 0h-7.372zM6 15.7L2.3 19.4 14.314 24h7.372L9.686 12 6 15.7z"/></svg>
                         </div>
                         <div>
                             <h3>Flutter Quote Generator</h3>
@@ -1057,7 +1042,7 @@
                     <span class="view-badge">View Certificate</span>
                     <div class="card-header">
                         <div class="card-icon">
-                            <img src="https://cdn.simpleicons.org/anthropic/D97757" alt="Anthropic Logo">
+                            <svg viewBox="0 0 24 24" fill="#D97757"><path d="M17.2 2H6.8L1 12l5.8 10h10.4l5.8-10L17.2 2zm-5.2 15l-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg>
                         </div>
                         <div>
                             <h3>Building with the Claude API</h3>
@@ -1077,7 +1062,7 @@
                     <span class="view-badge">View Certificate</span>
                     <div class="card-header">
                         <div class="card-icon">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/University_of_Helsinki_logo.svg/120px-University_of_Helsinki_logo.svg.png" alt="University of Helsinki Logo">
+                            <svg viewBox="0 0 24 24" fill="#002F6C"><path d="M12 2L1 7l11 5 9-4.09V17h2V7L12 2zm0 13l-8-3.64V17l8 4 8-4v-5.64L12 15z"/></svg>
                         </div>
                         <div>
                             <h3>Elements of AI</h3>
@@ -1095,7 +1080,7 @@
                     <span class="view-badge">View Certificate</span>
                     <div class="card-header">
                         <div class="card-icon">
-                            <img src="https://cdn.simpleicons.org/amazonwebservices/FF9900" alt="AWS Logo">
+                            <svg viewBox="0 0 24 24" fill="#FF9900"><path d="M18.75 12.18c0-.36-.29-.65-.65-.65h-1.3c-.36 0-.65.29-.65.65v.65c0 .36.29.65.65.65h1.3c.36 0 .65-.29.65-.65v-.65zm-13.5 0c0-.36-.29-.65-.65-.65h-1.3c-.36 0-.65.29-.65.65v.65c0 .36.29.65.65.65h1.3c.36 0 .65-.29.65-.65v-.65zm6.75 6.75c-4.14 0-7.5-1.79-7.5-4h15c0 2.21-3.36 4-7.5 4zm0-16.5C6.48 2.43 2 6.91 2 12.43s4.48 10 10 10 10-4.48 10-10S17.52 2.43 12 2.43z"/></svg>
                         </div>
                         <div>
                             <h3>AWS Intro to Generative AI</h3>
@@ -1114,7 +1099,7 @@
                     <span class="view-badge">View Certificate</span>
                     <div class="card-header">
                         <div class="card-icon">
-                            <img src="https://cdn.simpleicons.org/kaggle/20BEFF" alt="Kaggle Logo">
+                            <svg viewBox="0 0 24 24" fill="#20BEFF"><path d="M18.825 23.859c-.022.016-.045.031-.071.042l-.004.002c-.183.076-.395.097-.591.042l-6.159-1.76-6.159 1.76c-.196.055-.408.034-.591-.042l-.004-.002c-.026-.011-.049-.026-.071-.042A.996.996 0 015 23V1a1 1 0 011-1h12a1 1 0 011 1v22a.996.996 0 01-.175.859zM12 18.5l4 1.143V3H8v16.643l4-1.143z"/></svg>
                         </div>
                         <div>
                             <h3>Pandas</h3>
@@ -1133,7 +1118,7 @@
                     <span class="view-badge">View Certificate</span>
                     <div class="card-header">
                         <div class="card-icon">
-                            <img src="https://cdn.simpleicons.org/kaggle/20BEFF" alt="Kaggle Logo">
+                            <svg viewBox="0 0 24 24" fill="#20BEFF"><path d="M18.825 23.859c-.022.016-.045.031-.071.042l-.004.002c-.183.076-.395.097-.591.042l-6.159-1.76-6.159 1.76c-.196.055-.408.034-.591-.042l-.004-.002c-.026-.011-.049-.026-.071-.042A.996.996 0 015 23V1a1 1 0 011-1h12a1 1 0 011 1v22a.996.996 0 01-.175.859zM12 18.5l4 1.143V3H8v16.643l4-1.143z"/></svg>
                         </div>
                         <div>
                             <h3>Python</h3>
@@ -1152,7 +1137,7 @@
                     <span class="view-badge">View Certificate</span>
                     <div class="card-header">
                         <div class="card-icon">
-                            <img src="https://cdn.simpleicons.org/google/4285F4" alt="Google Logo">
+                            <svg viewBox="0 0 24 24" fill="#4285F4"><path d="M12 24C5.373 24 0 18.627 0 12S5.373 0 12 0s12 5.373 12 12-5.373 12-12 12zm-2.917-7.833h5.834L12 11.25l-2.917 4.917z"/></svg>
                         </div>
                         <div>
                             <h3>Build Apps with Flutter</h3>
@@ -1172,7 +1157,7 @@
                     <span class="view-badge">View Certificate</span>
                     <div class="card-header">
                         <div class="card-icon">
-                            <img src="https://cdn.simpleicons.org/microsoft/00A4EF" alt="Microsoft Logo">
+                            <svg viewBox="0 0 24 24" fill="#00A4EF"><path d="M0 0h11.379v11.379H0zM12.621 0H24v11.379H12.621zM0 12.621h11.379V24H0zM12.621 12.621H24V24H12.621z"/></svg>
                         </div>
                         <div>
                             <h3>Career Essentials in Generative AI</h3>
@@ -1192,7 +1177,7 @@
                     <span class="view-badge">View Certificate</span>
                     <div class="card-header">
                         <div class="card-icon">
-                            <img src="https://cdn.simpleicons.org/googlecloud/4285F4" alt="Google Cloud Logo">
+                            <svg viewBox="0 0 24 24" fill="#4285F4"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>
                         </div>
                         <div>
                             <h3>Prompt Design in Vertex AI</h3>
@@ -1212,7 +1197,7 @@
                     <span class="view-badge">View Certificate</span>
                     <div class="card-header">
                         <div class="card-icon">
-                            <img src="https://cdn.simpleicons.org/googlecloud/4285F4" alt="Google Cloud Logo">
+                            <svg viewBox="0 0 24 24" fill="#4285F4"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>
                         </div>
                         <div>
                             <h3>Applying AI Principles</h3>
@@ -1232,7 +1217,7 @@
                     <span class="view-badge">View Certificate</span>
                     <div class="card-header">
                         <div class="card-icon">
-                            <img src="https://cdn.simpleicons.org/ibm/052FAD" alt="IBM Logo">
+                            <svg viewBox="0 0 24 24" fill="#052FAD"><path d="M0 4h24v2H0V4zm0 4h24v2H0V8zm0 4h24v2H0v-2zm0 4h24v2H0v-2z"/></svg>
                         </div>
                         <div>
                             <h3>AI Fundamentals</h3>
@@ -1251,7 +1236,7 @@
                     <span class="view-badge">View Certificate</span>
                     <div class="card-header">
                         <div class="card-icon">
-                            <img src="https://cdn.simpleicons.org/freecodecamp/0A0A23" alt="freeCodeCamp Logo">
+                            <svg viewBox="0 0 24 24" fill="#0A0A23"><path d="M18 4h-4v2h4V4zm-8 0H6v2h4V4zm10 6H4v2h16v-2zm-2 6H6v2h12v-2z"/></svg>
                         </div>
                         <div>
                             <h3>Scientific Computing</h3>
@@ -1280,11 +1265,11 @@
                     
                     <div class="social-buttons-container">
                         <a href="https://github.com/mantwins" target="_blank" class="social-link-btn github">
-                            <img src="https://cdn.simpleicons.org/github/ffffff" width="18" height="18" alt="GitHub Logo"> 
+                            <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
                             View my GitHub
                         </a>
                         <a href="https://www.linkedin.com/in/chris-mantelos-3983b43b5/" target="_blank" class="social-link-btn linkedin">
-                            <img src="https://cdn.simpleicons.org/linkedin/ffffff" width="18" height="18" alt="LinkedIn Logo"> 
+                            <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                             Connect on LinkedIn
                         </a>
                     </div>
