@@ -114,7 +114,7 @@
             transition: background 0.5s ease, color 0.5s ease;
         }
 
-        /* ABSTRACT BACKGROUND IMAGE WITH OVERLAY */
+        /* BACKGROUND OVERLAY */
         body::before {
             content: '';
             position: fixed;
@@ -130,7 +130,7 @@
             transition: background 0.5s ease;
         }
 
-        /* FULL-WIDTH NAVBAR */
+        /* NAVBAR */
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -160,7 +160,6 @@
             box-shadow: 0 4px 12px rgba(6, 182, 212, 0.25);
         }
 
-        /* Action Buttons Group */
         .nav-actions {
             display: flex;
             align-items: center;
@@ -200,7 +199,6 @@
             stroke-linejoin: round;
         }
 
-        /* Background Overlay when Sidebar is open */
         .menu-overlay {
             position: fixed;
             top: 0;
@@ -397,7 +395,6 @@
             transform: translateY(-2px);
         }
 
-        /* Content Container */
         .container {
             max-width: 1100px;
             margin: 0 auto;
@@ -406,7 +403,6 @@
             z-index: 1;
         }
 
-        /* Section Titles */
         .section-title {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 2rem;
@@ -432,7 +428,7 @@
             border-radius: 2px;
         }
 
-        /* About Me Section */
+        /* ABOUT ME CARD */
         .about-card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -497,7 +493,7 @@
             margin: 0;
         }
 
-        /* Projects & Certifications Grid */
+        /* GRIDS & CARDS */
         .projects-grid,
         .certifications-grid {
             display: grid;
@@ -505,7 +501,6 @@
             gap: 20px;
         }
 
-        /* Card Common Styles */
         .project-card,
         .certification-card {
             display: flex;
@@ -562,7 +557,7 @@
             align-items: center;
             margin-bottom: 16px;
             gap: 14px;
-            padding-right: 125px; 
+            padding-right: 120px; 
         }
 
         .card-icon {
@@ -576,7 +571,7 @@
             justify-content: center;
             flex-shrink: 0;
             overflow: hidden;
-            padding: 6px;
+            padding: 8px;
             transition: all 0.3s ease;
         }
 
@@ -584,14 +579,6 @@
             width: 100%;
             height: 100%;
             object-fit: contain;
-        }
-
-        .card-icon svg {
-            width: 24px;
-            height: 24px;
-            stroke: var(--accent);
-            fill: none;
-            stroke-width: 2;
         }
 
         .project-card h3,
@@ -642,12 +629,6 @@
             border-left: 2px solid var(--border-color);
         }
 
-        .certification-card:hover .credential-id {
-            background: rgba(6, 182, 212, 0.08);
-            border-left-color: var(--accent);
-            color: var(--text-primary);
-        }
-
         .skills {
             display: flex;
             flex-wrap: wrap;
@@ -672,7 +653,7 @@
             border-color: rgba(6, 182, 212, 0.2);
         }
 
-        /* Contact Section */
+        /* CONTACT SECTION */
         .contact-section {
             margin-top: 80px;
             background: var(--card-bg);
@@ -704,7 +685,6 @@
             margin-bottom: 25px;
         }
 
-        /* Social Link Buttons Area */
         .social-buttons-container {
             display: flex;
             flex-direction: column;
@@ -815,7 +795,6 @@
             transform: none;
         }
 
-        /* TOAST NOTIFICATION STYLES */
         .toast {
             position: fixed;
             bottom: 30px;
@@ -854,7 +833,6 @@
             stroke-linejoin: round;
         }
 
-        /* Back to Top Button style */
         .back-to-top {
             position: fixed;
             bottom: 30px;
@@ -873,7 +851,6 @@
             transform: translateY(0);
         }
 
-        /* Footer */
         footer {
             text-align: center;
             margin-top: 80px;
@@ -886,7 +863,6 @@
             font-size: 0.9rem;
         }
 
-        /* Animations */
         @keyframes slideInDown {
             from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -897,7 +873,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Responsive Layouts */
         @media (max-width: 850px) {
             .contact-layout {
                 grid-template-columns: 1fr;
@@ -909,30 +884,15 @@
         }
 
         @media (max-width: 768px) {
-            .navbar {
-                padding: 15px 4%;
-            }
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            .hero-subtitle {
-                font-size: 1.1rem;
-            }
+            .navbar { padding: 15px 4%; }
+            .hero-title { font-size: 2.5rem; }
+            .hero-subtitle { font-size: 1.1rem; }
             .projects-grid,
             .certifications-grid { grid-template-columns: 1fr; }
             .container { padding: 0 16px 60px 16px; }
             .about-card, .contact-section { padding: 24px; }
-            .back-to-top {
-                bottom: 20px;
-                right: 20px;
-                width: 40px;
-                height: 40px;
-            }
-            .toast {
-                left: 16px;
-                right: 16px;
-                bottom: 80px;
-            }
+            .back-to-top { bottom: 20px; right: 20px; width: 40px; height: 40px; }
+            .toast { left: 16px; right: 16px; bottom: 80px; }
         }
     </style>
 </head>
@@ -950,7 +910,6 @@
                     <line x1="3" y1="18" x2="21" y2="18"></line>
                 </svg>
             </button>
-
             <button class="box-btn" id="themeToggleBtn" aria-label="Toggle Theme">
                 <svg id="themeIcon" viewBox="0 0 24 24">
                     <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
@@ -1030,14 +989,14 @@
             <div class="projects-grid">
                 
                 <a href="https://github.com/mantwins/text-professionalizer" target="_blank" class="project-card">
-                    <span class="view-badge">GitHub Repo</span>
+                    <span class="view-badge">View Repository</span>
                     <div class="card-header">
                         <div class="card-icon">
                             <img src="https://cdn.simpleicons.org/python/3776AB" alt="Python Logo">
                         </div>
                         <div>
                             <h3>Text Professionalizer</h3>
-                            <div class="organization">Python & AI</div>
+                            <div class="organization">Python & AI App</div>
                         </div>
                     </div>
                     <p class="project-desc">An AI-powered tool designed to refine, improve, and transform informal raw text into polished, professional communication.</p>
@@ -1049,10 +1008,10 @@
                 </a>
 
                 <a href="https://github.com/mantwins/expense-tracker-pandas" target="_blank" class="project-card">
-                    <span class="view-badge">GitHub Repo</span>
+                    <span class="view-badge">View Repository</span>
                     <div class="card-header">
                         <div class="card-icon">
-                            <img src="https://cdn.simpleicons.org/pandas/150458" alt="Pandas Logo">
+                            <img src="https://cdn.simpleicons.org/python/3776AB" alt="Python Logo">
                         </div>
                         <div>
                             <h3>Expense Tracker</h3>
@@ -1068,7 +1027,7 @@
                 </a>
 
                 <a href="https://github.com/mantwins/flutter-quote-generator" target="_blank" class="project-card">
-                    <span class="view-badge">GitHub Repo</span>
+                    <span class="view-badge">View Repository</span>
                     <div class="card-header">
                         <div class="card-icon">
                             <img src="https://cdn.simpleicons.org/flutter/02569B" alt="Flutter Logo">
@@ -1098,7 +1057,7 @@
                     <span class="view-badge">View Certificate</span>
                     <div class="card-header">
                         <div class="card-icon">
-                            <img src="./image_95a72c.png" alt="Anthropic Logo">
+                            <img src="https://cdn.simpleicons.org/anthropic/D97757" alt="Anthropic Logo">
                         </div>
                         <div>
                             <h3>Building with the Claude API</h3>
@@ -1136,7 +1095,7 @@
                     <span class="view-badge">View Certificate</span>
                     <div class="card-header">
                         <div class="card-icon">
-                            <img src="https://cdn.simpleicons.org/amazonwebservices/FF9900" onerror="this.src='https://www.vectorlogo.zone/logos/amazon_aws/amazon_aws-icon.svg'" alt="AWS Logo">
+                            <img src="https://cdn.simpleicons.org/amazonwebservices/FF9900" alt="AWS Logo">
                         </div>
                         <div>
                             <h3>AWS Intro to Generative AI</h3>
@@ -1155,7 +1114,7 @@
                     <span class="view-badge">View Certificate</span>
                     <div class="card-header">
                         <div class="card-icon">
-                            <img src="https://cdn.simpleicons.org/pandas/150458" onerror="this.src='https://cdn.simpleicons.org/pandas/150458'" alt="Pandas Logo">
+                            <img src="https://cdn.simpleicons.org/kaggle/20BEFF" alt="Kaggle Logo">
                         </div>
                         <div>
                             <h3>Pandas</h3>
@@ -1174,7 +1133,7 @@
                     <span class="view-badge">View Certificate</span>
                     <div class="card-header">
                         <div class="card-icon">
-                            <img src="https://cdn.simpleicons.org/python/3776AB" onerror="this.src='https://cdn.simpleicons.org/python/3776AB'" alt="Python Logo">
+                            <img src="https://cdn.simpleicons.org/kaggle/20BEFF" alt="Kaggle Logo">
                         </div>
                         <div>
                             <h3>Python</h3>
@@ -1193,7 +1152,7 @@
                     <span class="view-badge">View Certificate</span>
                     <div class="card-header">
                         <div class="card-icon">
-                            <img src="https://cdn.simpleicons.org/flutter/02569B" onerror="this.src='https://www.vectorlogo.zone/logos/flutterio/flutterio-icon.svg'" alt="Flutter Logo">
+                            <img src="https://cdn.simpleicons.org/google/4285F4" alt="Google Logo">
                         </div>
                         <div>
                             <h3>Build Apps with Flutter</h3>
@@ -1213,7 +1172,7 @@
                     <span class="view-badge">View Certificate</span>
                     <div class="card-header">
                         <div class="card-icon">
-                            <img src="https://cdn.simpleicons.org/microsoft/00A4EF" onerror="this.src='https://www.vectorlogo.zone/logos/microsoft/microsoft-icon.svg'" alt="Microsoft Logo">
+                            <img src="https://cdn.simpleicons.org/microsoft/00A4EF" alt="Microsoft Logo">
                         </div>
                         <div>
                             <h3>Career Essentials in Generative AI</h3>
@@ -1233,7 +1192,7 @@
                     <span class="view-badge">View Certificate</span>
                     <div class="card-header">
                         <div class="card-icon">
-                            <img src="https://cdn.simpleicons.org/googlecloud/4285F4" onerror="this.src='https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg'" alt="Google Cloud Logo">
+                            <img src="https://cdn.simpleicons.org/googlecloud/4285F4" alt="Google Cloud Logo">
                         </div>
                         <div>
                             <h3>Prompt Design in Vertex AI</h3>
@@ -1253,7 +1212,7 @@
                     <span class="view-badge">View Certificate</span>
                     <div class="card-header">
                         <div class="card-icon">
-                            <img src="https://cdn.simpleicons.org/googlecloud/4285F4" onerror="this.src='https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg'" alt="Google Cloud Logo">
+                            <img src="https://cdn.simpleicons.org/googlecloud/4285F4" alt="Google Cloud Logo">
                         </div>
                         <div>
                             <h3>Applying AI Principles</h3>
@@ -1273,7 +1232,7 @@
                     <span class="view-badge">View Certificate</span>
                     <div class="card-header">
                         <div class="card-icon">
-                            <img src="https://cdn.simpleicons.org/ibm/052FAD" onerror="this.src='https://www.vectorlogo.zone/logos/ibm/ibm-icon.svg'" alt="IBM Logo">
+                            <img src="https://cdn.simpleicons.org/ibm/052FAD" alt="IBM Logo">
                         </div>
                         <div>
                             <h3>AI Fundamentals</h3>
@@ -1292,7 +1251,7 @@
                     <span class="view-badge">View Certificate</span>
                     <div class="card-header">
                         <div class="card-icon">
-                            <img src="./image_95a78a.png" alt="freeCodeCamp Logo">
+                            <img src="https://cdn.simpleicons.org/freecodecamp/0A0A23" alt="freeCodeCamp Logo">
                         </div>
                         <div>
                             <h3>Scientific Computing</h3>
@@ -1379,7 +1338,6 @@
         const themeIcon = document.getElementById('themeIcon');
         const backToTopBtn = document.getElementById('backToTopBtn');
 
-        // Functions to Open/Close Sidebar
         function openSidebar() {
             sidebarMenu.classList.add('active');
             menuOverlay.classList.add('active');
@@ -1401,7 +1359,6 @@
             item.addEventListener('click', closeSidebar);
         });
 
-        // Show/Hide Back to Top Button on scroll
         window.addEventListener('scroll', () => {
             if (window.scrollY > 300) {
                 backToTopBtn.classList.add('show');
@@ -1417,7 +1374,6 @@
             });
         });
 
-        // Light / Dark Theme Switching Logic
         themeToggleBtn.addEventListener('click', () => {
             const currentTheme = document.documentElement.getAttribute('data-theme');
             if (currentTheme === 'light') {
@@ -1439,7 +1395,6 @@
             }
         });
 
-        // AJAX FORM SUBMISSION & TOAST NOTIFICATION
         const contactForm = document.getElementById('contactForm');
         const submitBtn = document.getElementById('submitBtn');
         const submitText = document.getElementById('submitText');
